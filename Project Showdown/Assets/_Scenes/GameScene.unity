@@ -313,7 +313,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 30
-  m_Sprite: {fileID: 21300000, guid: 0332de7c18c11ce4bbde98e58d970b9c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5363a93a2ec8fd146a60aa37b2180930, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -340,6 +340,7 @@ MonoBehaviour:
   firePoint: {fileID: 1705722780}
   bulletShellPrefab: {fileID: 0}
   bulletShellEffect: {fileID: 0}
+  minimalInputSensitivity: 0.5
   originalAnimationController: {fileID: 0}
 --- !u!1 &253957588
 GameObject:
@@ -1137,7 +1138,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 56022def00e953a46a01860e4960999e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 412390722abb6ea4cafd1794060c5fc2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1313,6 +1314,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: e5d899f5-8063-44e8-a921-7f52a27c6533
     m_ActionName: Shoot/Aim[/XInputControllerWindows/rightStick,/XInputControllerWindows/rightStick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: c744e0c0-8aa8-47de-b8e0-ccae78f91046
+    m_ActionName: Gameplay/Fire[/XInputControllerWindows/rightTrigger,/XInputControllerWindows1/rightTrigger]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cbf7837e-0f71-4c2b-92a6-78264fe98651
+    m_ActionName: Gameplay/Aim[/XInputControllerWindows/rightStick,/XInputControllerWindows1/rightStick]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay

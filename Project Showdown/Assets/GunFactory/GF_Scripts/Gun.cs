@@ -37,12 +37,14 @@ public class Gun : MonoBehaviour
     Vector2 lookPosition;
     Camera mainCamera;
 
+    public float minimalInputSensitivity;
+
     [Header("Debug")]
     public AnimatorController originalAnimationController;
 
     private void Awake()
     {
-        inputActions = GetComponentInParent<Controls>();
+        inputActions = new Controls();
         inputActions.Shoot.Aim.performed += ctx => lookPosition = ctx.ReadValue<Vector2>();
     }
 
@@ -210,7 +212,10 @@ public class Gun : MonoBehaviour
 
     void Aim()
     {
-        transform.localEulerAngles = new Vector3(0f, 0f, Mathf.Atan2(lookPosition.x, lookPosition.y)*-180/Mathf.PI+90f);
+        if(lookPosition.x > minimalInputSensitivity || lookPosition.y > minimalInputSensitivity || lookPosition.x < -minimalInputSensitivity || lookPosition.y < -minimalInputSensitivity)
+        {
+            transform.localEulerAngles = new Vector3(0f, 0f, Mathf.Atan2(lookPosition.x, lookPosition.y) * -180 / Mathf.PI + 90f);
+        }
     }
 
     void UpdateGraphics()
