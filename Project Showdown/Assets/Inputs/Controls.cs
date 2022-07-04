@@ -118,22 +118,14 @@ public class @Controls : IInputActionCollection, IDisposable
             ]
         },
         {
-            ""name"": ""Shoot"",
-            ""id"": ""a6b7345f-0ab9-4d67-9e69-a26c10f82b23"",
+            ""name"": ""UI"",
+            ""id"": ""5894fcc9-bccb-4835-b07d-3b09c1be7b25"",
             ""actions"": [
                 {
-                    ""name"": ""Fire"",
+                    ""name"": ""OpenCharacterMenu"",
                     ""type"": ""Button"",
-                    ""id"": ""331dda62-8ebf-4d3c-a6a4-cb908c537685"",
+                    ""id"": ""f3dd56b6-a9e1-40a2-9db1-e4428044d44c"",
                     ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Aim"",
-                    ""type"": ""PassThrough"",
-                    ""id"": ""e5d899f5-8063-44e8-a921-7f52a27c6533"",
-                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -141,23 +133,12 @@ public class @Controls : IInputActionCollection, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""0b66b86e-390c-4e38-8664-9a19afa86f53"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""id"": ""5b5da29c-36ff-4b75-99f4-49bc8d000be1"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Fire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""631842dc-0ec7-4b10-a93f-7dee244effea"",
-                    ""path"": ""<Gamepad>/rightStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Aim"",
+                    ""action"": ""OpenCharacterMenu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -173,10 +154,9 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Gameplay_AutoFire = m_Gameplay.FindAction("AutoFire", throwIfNotFound: true);
         m_Gameplay_SemiFire = m_Gameplay.FindAction("SemiFire", throwIfNotFound: true);
         m_Gameplay_Aim = m_Gameplay.FindAction("Aim", throwIfNotFound: true);
-        // Shoot
-        m_Shoot = asset.FindActionMap("Shoot", throwIfNotFound: true);
-        m_Shoot_Fire = m_Shoot.FindAction("Fire", throwIfNotFound: true);
-        m_Shoot_Aim = m_Shoot.FindAction("Aim", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_OpenCharacterMenu = m_UI.FindAction("OpenCharacterMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -288,46 +268,38 @@ public class @Controls : IInputActionCollection, IDisposable
     }
     public GameplayActions @Gameplay => new GameplayActions(this);
 
-    // Shoot
-    private readonly InputActionMap m_Shoot;
-    private IShootActions m_ShootActionsCallbackInterface;
-    private readonly InputAction m_Shoot_Fire;
-    private readonly InputAction m_Shoot_Aim;
-    public struct ShootActions
+    // UI
+    private readonly InputActionMap m_UI;
+    private IUIActions m_UIActionsCallbackInterface;
+    private readonly InputAction m_UI_OpenCharacterMenu;
+    public struct UIActions
     {
         private @Controls m_Wrapper;
-        public ShootActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Fire => m_Wrapper.m_Shoot_Fire;
-        public InputAction @Aim => m_Wrapper.m_Shoot_Aim;
-        public InputActionMap Get() { return m_Wrapper.m_Shoot; }
+        public UIActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @OpenCharacterMenu => m_Wrapper.m_UI_OpenCharacterMenu;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(ShootActions set) { return set.Get(); }
-        public void SetCallbacks(IShootActions instance)
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void SetCallbacks(IUIActions instance)
         {
-            if (m_Wrapper.m_ShootActionsCallbackInterface != null)
+            if (m_Wrapper.m_UIActionsCallbackInterface != null)
             {
-                @Fire.started -= m_Wrapper.m_ShootActionsCallbackInterface.OnFire;
-                @Fire.performed -= m_Wrapper.m_ShootActionsCallbackInterface.OnFire;
-                @Fire.canceled -= m_Wrapper.m_ShootActionsCallbackInterface.OnFire;
-                @Aim.started -= m_Wrapper.m_ShootActionsCallbackInterface.OnAim;
-                @Aim.performed -= m_Wrapper.m_ShootActionsCallbackInterface.OnAim;
-                @Aim.canceled -= m_Wrapper.m_ShootActionsCallbackInterface.OnAim;
+                @OpenCharacterMenu.started -= m_Wrapper.m_UIActionsCallbackInterface.OnOpenCharacterMenu;
+                @OpenCharacterMenu.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnOpenCharacterMenu;
+                @OpenCharacterMenu.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnOpenCharacterMenu;
             }
-            m_Wrapper.m_ShootActionsCallbackInterface = instance;
+            m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Fire.started += instance.OnFire;
-                @Fire.performed += instance.OnFire;
-                @Fire.canceled += instance.OnFire;
-                @Aim.started += instance.OnAim;
-                @Aim.performed += instance.OnAim;
-                @Aim.canceled += instance.OnAim;
+                @OpenCharacterMenu.started += instance.OnOpenCharacterMenu;
+                @OpenCharacterMenu.performed += instance.OnOpenCharacterMenu;
+                @OpenCharacterMenu.canceled += instance.OnOpenCharacterMenu;
             }
         }
     }
-    public ShootActions @Shoot => new ShootActions(this);
+    public UIActions @UI => new UIActions(this);
     public interface IGameplayActions
     {
         void OnMove(InputAction.CallbackContext context);
@@ -336,9 +308,8 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnSemiFire(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
     }
-    public interface IShootActions
+    public interface IUIActions
     {
-        void OnFire(InputAction.CallbackContext context);
-        void OnAim(InputAction.CallbackContext context);
+        void OnOpenCharacterMenu(InputAction.CallbackContext context);
     }
 }

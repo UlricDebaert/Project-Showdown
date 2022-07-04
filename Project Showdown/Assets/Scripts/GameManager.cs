@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     [Header("Spawn")]
     public Transform[] spawnPoints;
 
+    [Header("Players Management")]
+    public int playerCount;
+
     void Awake()
     {
         if (instance != null && instance != this)
@@ -19,5 +22,11 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
+    }
+
+    public void AddPlayer()
+    {
+        playerCount += 1;
+        UIManager.instance.AddPlayerPanel();
     }
 }

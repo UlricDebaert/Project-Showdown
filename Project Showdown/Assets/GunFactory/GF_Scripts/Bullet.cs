@@ -13,6 +13,7 @@ public class Bullet : MonoBehaviour
     [HideInInspector] public float penetrationMultiplier;
     //[HideInInspector] public float knockbackOnTarget;
     [HideInInspector] public bool destroyed;
+    [HideInInspector] public PlayerData selfPlayer;
 
     Rigidbody2D rb;
     Animator anim;
@@ -46,11 +47,12 @@ public class Bullet : MonoBehaviour
         {
             DestroyItself();
         }
-        if ((dummyLayers & (1 << collision.transform.gameObject.layer)) > 0)
+        if ((dummyLayers & (1 << collision.transform.gameObject.layer)) > 0 && collision.gameObject != selfPlayer.gameObject)
         {
-            collision.GetComponent<PlayerHP>().TakeDamage(Mathf.RoundToInt(bulletDamage / (1 + targetPenetrated * penetrationMultiplier)));
-            if (collision.GetComponent<PlayerHP>().healthPoint <= 0)
-                collision.GetComponent<PlayerHP>().Death();
+            collision.GetComponent<PlayerData>().TakeDamage(Mathf.RoundToInt(bulletDamage / (1 + targetPenetrated * penetrationMultiplier)));
+            if (collision.GetComponent<PlayerData>().healthPoint <= 0)
+                selfPlayer.IncreaseKillCount();
+                collision.GetComponent<PlayerData>().Death();
 
             if (targetPenetrated >= maxTargetsPenetration) DestroyItself();
             else targetPenetrated++;
