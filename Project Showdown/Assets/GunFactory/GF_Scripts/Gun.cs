@@ -33,19 +33,25 @@ public class Gun : MonoBehaviour
     //specific to fire mode
     bool barrelEmpty;
 
-    Controls inputActions;
+    PlayerInput inputActions;
+    InputAction aimInput;
+    float fireHold;
+    InputAction shootAutoInput;
+    InputAction shootSemiInput;
     Vector2 lookPosition;
     Camera mainCamera;
 
-    public float minimalInputSensitivity;
+    public float minimalInputSensitivity = 0.5f;
 
     [Header("Debug")]
     public AnimatorController originalAnimationController;
 
     private void Awake()
     {
-        inputActions = new Controls();
-        inputActions.Shoot.Aim.performed += ctx => lookPosition = ctx.ReadValue<Vector2>();
+        inputActions = GetComponentInParent<PlayerInput>();
+        aimInput = inputActions.actions["Aim"];
+        shootAutoInput = inputActions.actions["AutoFire"];
+        shootSemiInput = inputActions.actions["SemiFire"];
     }
 
     void Start()
@@ -84,7 +90,11 @@ public class Gun : MonoBehaviour
         switch (gunStats.fireMode)
         {
             case GunSO.shootType.fullAuto:
-                if (inputActions.Shoot.Fire.triggered && canShoot && currentAmmoCount > 0)
+
+                shootAutoInput.performed += ctx => fireHold = ctx.ReadValue<float>();
+                shootAutoInput.canceled += ctx => fireHold = ctx.ReadValue<float>();
+
+                if (fireHold > .5 && canShoot && currentAmmoCount > 0)
                 {
                     Fire();
                     if(bulletShellEffect != null) bulletShellEffect.Play();
@@ -92,7 +102,7 @@ public class Gun : MonoBehaviour
                 break;
 
             case GunSO.shootType.semiAuto:
-                if (inputActions.Shoot.Fire.triggered && canShoot && currentAmmoCount > 0)
+                if (shootSemiInput.triggered && canShoot && currentAmmoCount > 0)
                 {
                     Fire();
                     if (bulletShellEffect != null) bulletShellEffect.Play();
@@ -100,7 +110,7 @@ public class Gun : MonoBehaviour
                 break;
 
             case GunSO.shootType.pump:
-                if (inputActions.Shoot.Fire.triggered && barrelEmpty)
+                if (shootSemiInput.triggered && barrelEmpty)
                 {
                     Invoke("EmptyBarrel", 0.1f);
 
@@ -109,7 +119,7 @@ public class Gun : MonoBehaviour
 
                     if (bulletShellEffect != null) bulletShellEffect.Play();
                 }
-                if (inputActions.Shoot.Fire.triggered && canShoot && currentAmmoCount > 0 && !barrelEmpty)
+                if (shootSemiInput.triggered && canShoot && currentAmmoCount > 0 && !barrelEmpty)
                 {
                     Fire();
                     Invoke("EmptyBarrel", 0.1f);
@@ -151,9 +161,9 @@ public class Gun : MonoBehaviour
             reloadTimer = gunStats.reloadTime;
         }
                 
-        gameObject.GetComponentInParent<Rigidbody2D>().AddForce(
+        /*gameObject.GetComponentInParent<Rigidbody2D>().AddForce(
             new Vector2(Mathf.Sign(-(Camera.main.ScreenToWorldPoint(Input.mousePosition).x - transform.position.x)), 0) * gunStats.knockbackOnPlayer, 
-            ForceMode2D.Impulse);
+            ForceMode2D.Impulse);*/
 
         if (gunStats.shootAudio != null)
         {
@@ -212,6 +222,7 @@ public class Gun : MonoBehaviour
 
     void Aim()
     {
+        lookPosition = aimInput.ReadValue<Vector2>();
         if(lookPosition.x > minimalInputSensitivity || lookPosition.y > minimalInputSensitivity || lookPosition.x < -minimalInputSensitivity || lookPosition.y < -minimalInputSensitivity)
         {
             transform.localEulerAngles = new Vector3(0f, 0f, Mathf.Atan2(lookPosition.x, lookPosition.y) * -180 / Mathf.PI + 90f);
@@ -263,16 +274,6 @@ public class Gun : MonoBehaviour
         animOverrideController["Gun_EmptyMag_Anim"] = gunStats.emptyMagazineAnimation;
         if(gunStats.fireMode == GunSO.shootType.pump)
             animOverrideController["Gun_Cocking_Anim"] = gunStats.cockingAnimation;
-    }
-
-    private void OnEnable()
-    {
-        inputActions.Enable();
-    }
-
-    private void OnDisable()
-    {
-        inputActions.Disable();
     }
 }
 

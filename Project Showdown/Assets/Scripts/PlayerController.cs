@@ -25,21 +25,28 @@ public class PlayerController : MonoBehaviour
     [Header("Graphics")]
     public SpriteRenderer playerSprite;
     public Animator anim;
+    public float minimalFlipSensitivity = 0.5f;
     string currentAnimation;
     const string playerIdle = "PlayerIdle_Anim";
     const string playerJump = "PlayerJump_Anim";
     const string playerWalk = "PlayerWalk_Anim";
 
-    
+    PlayerInput inputActions;
+    InputAction aimInput;
+    Vector2 lookPosition;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        inputActions = GetComponent<PlayerInput>();
+        aimInput = inputActions.actions["Aim"];
     }
 
 
     void Update()
     {
         Move();
+        Flip();
     }
 
     private void FixedUpdate()
@@ -77,6 +84,17 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext ctx) => horizontalInput = ctx.ReadValue<float>();
 
+    void Flip()
+    {
+        lookPosition = aimInput.ReadValue<Vector2>();
+
+        if (lookPosition.x > minimalFlipSensitivity || lookPosition.x < -minimalFlipSensitivity)
+        {
+            if (lookPosition.x < minimalFlipSensitivity) playerSprite.flipX = true;
+            else playerSprite.flipX = false;
+        }
+    }
+    
     private void CheckSurroundings()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheckPos.position, groundCheckRadius, groundLayer);

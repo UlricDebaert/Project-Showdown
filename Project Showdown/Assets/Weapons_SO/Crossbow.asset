@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Crossbow
   m_EditorClassIdentifier: 
   fireMode: 1
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 3444065535886247777, guid: bf45b1e596c1d184ba83442320c50877, type: 3}
   bulletDamage: 20
-  fireRate: 1
+  fireRate: 0.4
   bulletSpeed: 25
   bulletAngleShift: 0
   bulletQuantityPerShootPoint: 1

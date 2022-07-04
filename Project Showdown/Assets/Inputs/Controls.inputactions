@@ -22,12 +22,20 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Fire",
+                    "name": "AutoFire",
                     "type": "Button",
                     "id": "c744e0c0-8aa8-47de-b8e0-ccae78f91046",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "SemiFire",
+                    "type": "Button",
+                    "id": "15968da1-0a43-4137-b4f7-300f6460c82d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
                 },
                 {
                     "name": "Aim",
@@ -68,7 +76,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Fire",
+                    "action": "AutoFire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -80,6 +88,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fba89f44-c1c4-4e3c-9385-99adbfb6a4c7",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SemiFire",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

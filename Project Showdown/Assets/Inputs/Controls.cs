@@ -35,12 +35,20 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Fire"",
+                    ""name"": ""AutoFire"",
                     ""type"": ""Button"",
                     ""id"": ""c744e0c0-8aa8-47de-b8e0-ccae78f91046"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""SemiFire"",
+                    ""type"": ""Button"",
+                    ""id"": ""15968da1-0a43-4137-b4f7-300f6460c82d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 },
                 {
                     ""name"": ""Aim"",
@@ -81,7 +89,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Fire"",
+                    ""action"": ""AutoFire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -93,6 +101,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fba89f44-c1c4-4e3c-9385-99adbfb6a4c7"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SemiFire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -151,7 +170,8 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
-        m_Gameplay_Fire = m_Gameplay.FindAction("Fire", throwIfNotFound: true);
+        m_Gameplay_AutoFire = m_Gameplay.FindAction("AutoFire", throwIfNotFound: true);
+        m_Gameplay_SemiFire = m_Gameplay.FindAction("SemiFire", throwIfNotFound: true);
         m_Gameplay_Aim = m_Gameplay.FindAction("Aim", throwIfNotFound: true);
         // Shoot
         m_Shoot = asset.FindActionMap("Shoot", throwIfNotFound: true);
@@ -208,7 +228,8 @@ public class @Controls : IInputActionCollection, IDisposable
     private IGameplayActions m_GameplayActionsCallbackInterface;
     private readonly InputAction m_Gameplay_Move;
     private readonly InputAction m_Gameplay_Jump;
-    private readonly InputAction m_Gameplay_Fire;
+    private readonly InputAction m_Gameplay_AutoFire;
+    private readonly InputAction m_Gameplay_SemiFire;
     private readonly InputAction m_Gameplay_Aim;
     public struct GameplayActions
     {
@@ -216,7 +237,8 @@ public class @Controls : IInputActionCollection, IDisposable
         public GameplayActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Gameplay_Move;
         public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
-        public InputAction @Fire => m_Wrapper.m_Gameplay_Fire;
+        public InputAction @AutoFire => m_Wrapper.m_Gameplay_AutoFire;
+        public InputAction @SemiFire => m_Wrapper.m_Gameplay_SemiFire;
         public InputAction @Aim => m_Wrapper.m_Gameplay_Aim;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
@@ -233,9 +255,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Jump.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
-                @Fire.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFire;
-                @Fire.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFire;
-                @Fire.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnFire;
+                @AutoFire.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAutoFire;
+                @AutoFire.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAutoFire;
+                @AutoFire.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAutoFire;
+                @SemiFire.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSemiFire;
+                @SemiFire.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSemiFire;
+                @SemiFire.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSemiFire;
                 @Aim.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAim;
                 @Aim.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAim;
                 @Aim.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnAim;
@@ -249,9 +274,12 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @Fire.started += instance.OnFire;
-                @Fire.performed += instance.OnFire;
-                @Fire.canceled += instance.OnFire;
+                @AutoFire.started += instance.OnAutoFire;
+                @AutoFire.performed += instance.OnAutoFire;
+                @AutoFire.canceled += instance.OnAutoFire;
+                @SemiFire.started += instance.OnSemiFire;
+                @SemiFire.performed += instance.OnSemiFire;
+                @SemiFire.canceled += instance.OnSemiFire;
                 @Aim.started += instance.OnAim;
                 @Aim.performed += instance.OnAim;
                 @Aim.canceled += instance.OnAim;
@@ -304,7 +332,8 @@ public class @Controls : IInputActionCollection, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnFire(InputAction.CallbackContext context);
+        void OnAutoFire(InputAction.CallbackContext context);
+        void OnSemiFire(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
     }
     public interface IShootActions

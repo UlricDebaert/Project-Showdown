@@ -25,6 +25,7 @@ public class Bullet : MonoBehaviour
         anim = GetComponent<Animator>();
 
         destroyed = false;
+        if(anim!=null)
         anim.SetBool("destroyed", destroyed);
 
         targetPenetrated = 0;
@@ -47,6 +48,10 @@ public class Bullet : MonoBehaviour
         }
         if ((dummyLayers & (1 << collision.transform.gameObject.layer)) > 0)
         {
+            collision.GetComponent<PlayerHP>().TakeDamage(Mathf.RoundToInt(bulletDamage / (1 + targetPenetrated * penetrationMultiplier)));
+            if (collision.GetComponent<PlayerHP>().healthPoint <= 0)
+                collision.GetComponent<PlayerHP>().Death();
+
             if (targetPenetrated >= maxTargetsPenetration) DestroyItself();
             else targetPenetrated++;
         }
@@ -55,7 +60,8 @@ public class Bullet : MonoBehaviour
     public void DestroyItself()
     {
         destroyed = true;
-        anim.SetBool("destroyed", destroyed);
+        if (anim != null)
+            anim.SetBool("destroyed", destroyed);
         Destroy(gameObject, destroyAnimDelay);
     }
 }

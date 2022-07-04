@@ -946,7 +946,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705722779}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.878, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1203951}
@@ -1010,7 +1010,7 @@ MonoBehaviour:
         m_Action: Join
         m_Flags: 0
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 5803484013961316565, guid: 55c713c294d8f6e47890e36a49e71404, type: 3}
+  m_PlayerPrefab: {fileID: 4005151451710845920, guid: 871cb6bd36379544dabd50db4a96fde4, type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 1
   m_FixedNumberOfSplitScreens: -1
@@ -1200,8 +1200,9 @@ MonoBehaviour:
     m_Bits: 128
   groundCheckPos: {fileID: 1699396619438378761}
   groundCheckRadius: 0.4
-  playerSprite: {fileID: 0}
+  playerSprite: {fileID: 1699396618718544418}
   anim: {fileID: 0}
+  minimalFlipSensitivity: 0.5
 --- !u!61 &1699396620358119953
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1238,17 +1239,31 @@ GameObject:
   m_Component:
   - component: {fileID: 1699396620358119959}
   - component: {fileID: 1699396620358119952}
+  - component: {fileID: 1699396620358119955}
   - component: {fileID: 1699396620358119953}
   - component: {fileID: 1699396620358119958}
   - component: {fileID: 1699396620358119957}
   - component: {fileID: 6522657354147653651}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player_Priest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1699396620358119955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699396620358119954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d6279465b608940aa322ac74bd82ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPoint: 100
 --- !u!114 &1699396620358119957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1322,6 +1337,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: cbf7837e-0f71-4c2b-92a6-78264fe98651
     m_ActionName: Gameplay/Aim[/XInputControllerWindows/rightStick,/XInputControllerWindows1/rightStick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 15968da1-0a43-4137-b4f7-300f6460c82d
+    m_ActionName: Gameplay/SemiFire[/XInputControllerWindows/rightTrigger,/XInputControllerWindows/rightTrigger,/XInputControllerWindows/rightTrigger]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
