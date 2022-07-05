@@ -18,6 +18,8 @@ public class PlayerData : MonoBehaviour
 
         playerID = GameManager.instance.playerCount;
         GameManager.instance.AddPlayer();
+
+        UIManager.instance.playerPanels[playerID].UpdateKDText(killCount, deathCount);
     }
 
     public void TakeDamage(int damage)
@@ -33,11 +35,14 @@ public class PlayerData : MonoBehaviour
 
     public void IncreaseKillCount()
     {
+        print("KC");
         killCount++;
+        UIManager.instance.playerPanels[playerID].UpdateKDText(killCount, deathCount);
     }
 
     public void IncreaseDeathCount()
     {
         deathCount++;
+        UIManager.instance.playerPanels[playerID].UpdateKDText(killCount, deathCount);
     }
 }

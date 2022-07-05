@@ -154,4 +154,5 @@ MonoBehaviour:
   maxTargetsPenetration: 0
   penetrationMultiplier: 0
   destroyed: 0
+  selfPlayer: {fileID: 0}
   destroyAnimDelay: 0

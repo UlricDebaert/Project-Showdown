@@ -43,6 +43,8 @@ public class Gun : MonoBehaviour
 
     public float minimalInputSensitivity = 0.5f;
 
+    PlayerData playerData;
+
     [Header("Debug")]
     public AnimatorController originalAnimationController;
 
@@ -60,6 +62,7 @@ public class Gun : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        playerData = GetComponentInParent<PlayerData>();
 
         InitAnimOverrideController();
 
@@ -69,15 +72,12 @@ public class Gun : MonoBehaviour
         barrelEmpty = false;
 
         currentAmmoCount = gunStats.magazine;
-        UpdateAmmoCount();
-        if (AmmoCountPannel.instance != null && AmmoCountPannel.instance.ammoLoadingIcon != null)
-            AmmoCountPannel.instance.ammoLoadingIcon.fillAmount = 0.0f;
+        StartCoroutine(LateStart());
     }
 
 
     void Update()
     {
-        //LookToMousePosition();
         UpdateFireRate();
         UpdateGraphics();
         CheckInput();
@@ -196,29 +196,20 @@ public class Gun : MonoBehaviour
 
             reloadTimer -= Time.deltaTime;
 
-            if (AmmoCountPannel.instance != null && AmmoCountPannel.instance.ammoLoadingIcon != null && reloadTimer > 0.0f) 
-                AmmoCountPannel.instance.ammoLoadingIcon.fillAmount = 1-reloadTimer/gunStats.reloadTime;
+            if(reloadTimer > 0.0f)
+                UIManager.instance.playerPanels[playerData.playerID].loadingIcon.fillAmount = reloadTimer / gunStats.reloadTime;
 
             if (reloadTimer <= 0.0f)
             {
                 currentAmmoCount = gunStats.magazine;
 
-                if (AmmoCountPannel.instance != null && AmmoCountPannel.instance.ammoLoadingIcon != null) 
-                    AmmoCountPannel.instance.ammoLoadingIcon.fillAmount = 0.0f;
+                UIManager.instance.playerPanels[playerData.playerID].loadingIcon.fillAmount = 0.0f;
 
                 anim.SetBool("emptyMag", false);
 
                 UpdateAmmoCount();
             }
         }
-    }
-
-    void LookToMousePosition()
-    {
-        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        difference.Normalize();
-        float rotation_z = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotation_z);
     }
 
     void Aim()
@@ -248,10 +239,7 @@ public class Gun : MonoBehaviour
 
     void UpdateAmmoCount()
     {
-        if (AmmoCountPannel.instance != null && AmmoCountPannel.instance.ammoCounterText != null)
-        {
-            AmmoCountPannel.instance.ammoCounterText.text = currentAmmoCount.ToString() + " / " + gunStats.magazine.ToString();
-        }
+        UIManager.instance.playerPanels[playerData.playerID].UpdateAmmoCount(currentAmmoCount, gunStats.magazine);
     }
 
     void EmptyBarrel()
@@ -275,6 +263,14 @@ public class Gun : MonoBehaviour
         animOverrideController["Gun_EmptyMag_Anim"] = gunStats.emptyMagazineAnimation;
         if(gunStats.fireMode == GunSO.shootType.pump)
             animOverrideController["Gun_Cocking_Anim"] = gunStats.cockingAnimation;
+    }
+
+    IEnumerator LateStart()
+    {
+        yield return new WaitForSeconds(.1f);
+
+        UpdateAmmoCount();
+        UIManager.instance.playerPanels[playerData.playerID].loadingIcon.fillAmount = 0.0f;
     }
 }
 
