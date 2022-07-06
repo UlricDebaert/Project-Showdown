@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 448daa073c09ad5418dd3d379fbe497c, type: 3}
+  m_Name: Priest_SO
+  m_EditorClassIdentifier: 
+  gun: {fileID: 1289634052987769306, guid: 7cfefb823bd33d446aef208733e909e8, type: 3}
+  gunPos: {x: -0.052, y: 0.264, z: 0}
+  healthPoint: 100
+  characterName: Priest
+  characterIcon: {fileID: 0}
+  powerIcon: {fileID: 0}
+  baseSprite: {fileID: 0}
+  idleAnim: {fileID: 0}
+  walkAnim: {fileID: 0}
+  jumpAnim: {fileID: 0}

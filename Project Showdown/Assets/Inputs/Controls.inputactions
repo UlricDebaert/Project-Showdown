@@ -19,7 +19,7 @@
                     "id": "13a9dd9c-fbc0-4757-86ce-8746174250c4",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
                 },
                 {
                     "name": "AutoFire",
@@ -44,6 +44,22 @@
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "SwitchCharacter",
+                    "type": "Button",
+                    "id": "7aa9ceed-583e-4cd7-b2ca-ef60ee4daf0d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "Spawn",
+                    "type": "Button",
+                    "id": "bdaafa9b-a995-4f0e-b261-cc76b176df78",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
@@ -62,7 +78,7 @@
                     "name": "",
                     "id": "78075a63-5869-4cd2-9e4f-0fa78aff7a58",
                     "path": "<Gamepad>/buttonSouth",
-                    "interactions": "Tap",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
@@ -99,6 +115,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "SemiFire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "016f786c-f848-4947-9e52-67748e5b4a51",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchCharacter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6ba53818-241a-44f8-8072-332d0311d69b",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Spawn",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

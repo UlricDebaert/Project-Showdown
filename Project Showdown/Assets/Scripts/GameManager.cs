@@ -12,6 +12,9 @@ public class GameManager : MonoBehaviour
     [Header("Players Management")]
     public int playerCount;
 
+    [Header("Characters")]
+    public CharacterSO characters;
+
     void Awake()
     {
         if (instance != null && instance != this)

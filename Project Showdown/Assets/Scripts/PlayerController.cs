@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    PlayerData PD;
+
     [Header("Move")]
     float horizontalInput;
     public float moveSpeed;
@@ -31,6 +33,7 @@ public class PlayerController : MonoBehaviour
     const string playerJump = "PlayerJump_Anim";
     const string playerWalk = "PlayerWalk_Anim";
 
+    //Inputs
     PlayerInput inputActions;
     InputAction aimInput;
     Vector2 lookPosition;
@@ -39,14 +42,19 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         inputActions = GetComponent<PlayerInput>();
+        PD = GetComponent<PlayerData>();
         aimInput = inputActions.actions["Aim"];
     }
 
 
     void Update()
     {
-        Move();
-        Flip();
+        if (PD.canMove)
+        {
+            Move();
+            Flip();
+        }
+        if (inputActions.actions["Jump"].triggered) Jump();
     }
 
     private void FixedUpdate()
@@ -75,7 +83,7 @@ public class PlayerController : MonoBehaviour
 
     public void Jump()
     {
-        if (isGrounded)
+        if (isGrounded && !PD.isDead)
         {
             //rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);

@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class PlayerData : MonoBehaviour
 {
+    public CharacterSO character;
+
     public int playerID;
 
     public int killCount;
     public int deathCount;
 
-    public int healthPoint = 100;
+    public bool canMove;
+    public bool canShoot;
+    public bool isDead;
+
+    [HideInInspector] public int healthPoint;
+    [HideInInspector] public GameObject ownGun;
+
+    Rigidbody2D rb;
+    BoxCollider2D ownCollider;
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
+        ownCollider = GetComponent<BoxCollider2D>();
+
         killCount = 0;
         deathCount = 0;
 
@@ -30,12 +43,14 @@ public class PlayerData : MonoBehaviour
     public void Death()
     {
         IncreaseDeathCount();
-        Destroy(gameObject);
+        Destroy(ownGun);
+        canShoot = false; canMove = false; isDead = true;
+        rb.isKinematic = true;
+        ownCollider.enabled = false;
     }
 
     public void IncreaseKillCount()
     {
-        print("KC");
         killCount++;
         UIManager.instance.playerPanels[playerID].UpdateKDText(killCount, deathCount);
     }
