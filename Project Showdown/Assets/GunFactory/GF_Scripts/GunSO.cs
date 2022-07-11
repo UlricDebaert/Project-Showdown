@@ -9,7 +9,7 @@ using UnityEditor;
 [CreateAssetMenu]
 public class GunSO : ScriptableObject
 {
-    public enum shootType { fullAuto, semiAuto, pump }
+    public enum shootType { fullAuto, semiAuto, pump, charge }
     [Header("Shoot")]
     [Tooltip("Trigger type")] public shootType fireMode;
     [Tooltip("Bullet instantiate for each shot")] public GameObject bulletPrefab;
@@ -18,6 +18,7 @@ public class GunSO : ScriptableObject
     [Tooltip("Force apply on bullet on shot")] public float bulletSpeed=25;
     [Tooltip("Reduce gun accuracy")] [Range(0.0f, 90.0f)] public float bulletAngleShift;
     [Tooltip("Bullet quantity instantiate on each shot")]public int bulletQuantityPerShootPoint = 1;
+    [Tooltip("Only for charge shoot type")]public float chargeTime = 1.0f;
 
     [Header("Knockback")]
     [Tooltip("Knockback apply on player for each shot")] public float knockbackOnPlayer;

@@ -32,12 +32,14 @@ public class Gun : MonoBehaviour
 
     //specific to fire mode
     bool barrelEmpty;
+    float chargeTimer;
 
     PlayerInput inputActions;
     InputAction aimInput;
     float fireHold;
     InputAction shootAutoInput;
     InputAction shootSemiInput;
+    InputAction reloadInput;
     Vector2 lookPosition;
     Camera mainCamera;
 
@@ -54,6 +56,7 @@ public class Gun : MonoBehaviour
         aimInput = inputActions.actions["Aim"];
         shootAutoInput = inputActions.actions["AutoFire"];
         shootSemiInput = inputActions.actions["SemiFire"];
+        reloadInput = inputActions.actions["Reload"];
     }
 
     void Start()
@@ -70,6 +73,7 @@ public class Gun : MonoBehaviour
 
         canShoot = false;
         barrelEmpty = false;
+        chargeTimer = 0.0f;
 
         currentAmmoCount = gunStats.magazine;
         StartCoroutine(LateStart());
@@ -83,6 +87,7 @@ public class Gun : MonoBehaviour
         CheckInput();
         UpdateReloading();
         Aim();
+        ManualReload();
     }
 
     void CheckInput()
@@ -123,6 +128,28 @@ public class Gun : MonoBehaviour
                 {
                     Fire();
                     Invoke("EmptyBarrel", 0.1f);
+                }
+                break;
+
+            case GunSO.shootType.charge:
+
+                shootAutoInput.performed += ctx => fireHold = ctx.ReadValue<float>();
+                shootAutoInput.canceled += ctx => fireHold = ctx.ReadValue<float>();
+
+                if (fireHold > .5 && canShoot && currentAmmoCount > 0 && chargeTimer < gunStats.chargeTime)
+                {
+                    chargeTimer += Time.deltaTime;
+                }
+
+                if (fireHold > .5 && canShoot && currentAmmoCount > 0 && chargeTimer > gunStats.chargeTime)
+                {
+                    Fire();
+                    if (bulletShellEffect != null) bulletShellEffect.Play();
+                }
+
+                if (fireHold < .5 && chargeTimer != 0.0f)
+                {
+                    chargeTimer = 0.0f;
                 }
                 break;
 
@@ -176,6 +203,16 @@ public class Gun : MonoBehaviour
 
 
         UpdateAmmoCount();
+    }
+
+    void ManualReload()
+    {
+        if (reloadInput.triggered && currentAmmoCount > 0 && currentAmmoCount != gunStats.magazine)
+        {
+            currentAmmoCount = 0;
+            reloadTimer = gunStats.reloadTime;
+            UpdateAmmoCount();
+        }
     }
 
     void UpdateFireRate()
