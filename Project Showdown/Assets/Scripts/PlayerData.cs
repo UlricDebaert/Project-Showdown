@@ -17,6 +17,7 @@ public class PlayerData : MonoBehaviour
 
     [HideInInspector] public int healthPoint;
     [HideInInspector] public GameObject ownGun;
+    [HideInInspector] public GameObject ownPower;
 
     Rigidbody2D rb;
     BoxCollider2D ownCollider;
@@ -44,6 +45,7 @@ public class PlayerData : MonoBehaviour
     {
         IncreaseDeathCount();
         Destroy(ownGun);
+        Destroy(ownPower);
         canShoot = false; canMove = false; isDead = true;
         rb.isKinematic = true;
         ownCollider.enabled = false;

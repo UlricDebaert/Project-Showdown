@@ -40,6 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1350907555650449094}
   - component: {fileID: 1350907555650449092}
+  - component: {fileID: 1608138492489874353}
   m_Layer: 0
   m_Name: PlayerGraph
   m_TagString: Untagged
@@ -112,6 +113,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1608138492489874353
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350907555650449095}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1350907556090240756
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,7 +149,7 @@ GameObject:
   - component: {fileID: 6894792454933366005}
   - component: {fileID: 1757449496979015161}
   m_Layer: 6
-  m_Name: Player_Priest
+  m_Name: Player_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -174,7 +194,7 @@ MonoBehaviour:
   groundCheckPos: {fileID: 1350907554926453743}
   groundCheckRadius: 0.4
   playerSprite: {fileID: 1350907555650449092}
-  anim: {fileID: 0}
+  anim: {fileID: 1608138492489874353}
   minimalFlipSensitivity: 0.5
 --- !u!114 &1350907556090240757
 MonoBehaviour:
@@ -197,6 +217,7 @@ MonoBehaviour:
   isDead: 0
   healthPoint: 100
   ownGun: {fileID: 0}
+  ownPower: {fileID: 0}
 --- !u!61 &1350907556090240759
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -221,7 +242,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9, y: 2}
+  m_Size: {x: 0.8, y: 2}
   m_EdgeRadius: 0
 --- !u!50 &1350907556090240752
 Rigidbody2D:
@@ -313,6 +334,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: bdaafa9b-a995-4f0e-b261-cc76b176df78
     m_ActionName: Gameplay/Spawn[/XInputControllerWindows/buttonSouth,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 510eb0ed-8e63-458e-8cd0-bed8ec3f1b04
+    m_ActionName: Gameplay/Reload[/XInputControllerWindows/buttonWest]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -331,6 +356,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSprite: {fileID: 1350907555650449092}
+  anim: {fileID: 1608138492489874353}
+  originalAnimationController: {fileID: 9100000, guid: 7e302efcddfb2564cba134f5041324af, type: 2}
 --- !u!114 &1757449496979015161
 MonoBehaviour:
   m_ObjectHideFlags: 0

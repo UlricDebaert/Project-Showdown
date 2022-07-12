@@ -9,6 +9,9 @@ public class CharacterSO : ScriptableObject
     public GameObject gun;
     public Vector3 gunPos;
 
+    [Header("Special Power")]
+    public GameObject specialPowerPrefab;
+
     [Header("Stats")]
     public int healthPoint;
 

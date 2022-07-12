@@ -29,9 +29,9 @@ public class PlayerController : MonoBehaviour
     public Animator anim;
     public float minimalFlipSensitivity = 0.5f;
     string currentAnimation;
-    const string playerIdle = "PlayerIdle_Anim";
-    const string playerJump = "PlayerJump_Anim";
-    const string playerWalk = "PlayerWalk_Anim";
+    const string playerIdle = "Player_Idle_Anim";
+    const string playerJump = "Player_Jump_Anim";
+    const string playerWalk = "Player_Walk_Anim";
 
     //Inputs
     PlayerInput inputActions;
@@ -70,15 +70,20 @@ public class PlayerController : MonoBehaviour
         {
             // Move the character by finding the target velocity
             targetVelocity = new Vector2(horizontalInput * Time.deltaTime * moveSpeed * 100, rb.velocity.y);
+
+            if (horizontalInput != 0) ChangeAnimationState(playerWalk);
+            else ChangeAnimationState(playerIdle);
         }
         else
         {
             // Move the character by finding the target velocity
             targetVelocity = new Vector2(horizontalInput * Time.deltaTime * moveSpeed * 100 * airDragMultiplier, rb.velocity.y);
+            ChangeAnimationState(playerJump);
         }
 
         // And then smoothing it out and applying it to the character
         rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, movementSmoothing);
+
     }
 
     public void Jump()
@@ -111,5 +116,15 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheckPos.position, groundCheckRadius);
+    }
+
+    void ChangeAnimationState(string newAnimation)
+    {
+        if (currentAnimation == newAnimation) return;
+
+        anim.Play(newAnimation);
+        print(newAnimation);
+
+        currentAnimation = newAnimation;
     }
 }
