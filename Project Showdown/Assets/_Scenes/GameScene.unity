@@ -809,6 +809,7 @@ MonoBehaviour:
   - {fileID: 1456456060}
   - {fileID: 253957589}
   playerCount: 0
+  characters: {fileID: 0}
 --- !u!1 &1045218627
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,6 +934,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd12043fd9f63cf4098fd907d9b715e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  KDText: {fileID: 0}
+  AmmoText: {fileID: 0}
+  loadingIcon: {fileID: 0}
 --- !u!1 &1088223369
 GameObject:
   m_ObjectHideFlags: 0
@@ -2649,10 +2653,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1803b4323e0e7374a906e12c788757e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  character: {fileID: 0}
   playerID: 0
   killCount: 0
   deathCount: 0
+  canMove: 0
+  canShoot: 0
+  isDead: 0
   healthPoint: 100
+  ownGun: {fileID: 0}
+  ownPower: {fileID: 0}
 --- !u!114 &1699396620358119957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2726,6 +2736,18 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: f3dd56b6-a9e1-40a2-9db1-e4428044d44c
     m_ActionName: UI/OpenCharacterMenu[/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7aa9ceed-583e-4cd7-b2ca-ef60ee4daf0d
+    m_ActionName: Gameplay/SwitchCharacter[/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bdaafa9b-a995-4f0e-b261-cc76b176df78
+    m_ActionName: Gameplay/Spawn[/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 510eb0ed-8e63-458e-8cd0-bed8ec3f1b04
+    m_ActionName: Gameplay/Reload[/XInputControllerWindows/buttonWest]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -2781,3 +2803,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5714eca9035cdc4469161544db29fbd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSprite: {fileID: 0}
+  anim: {fileID: 0}
+  originalAnimationController: {fileID: 0}

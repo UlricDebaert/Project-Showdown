@@ -13,7 +13,7 @@ public class CharacterSO : ScriptableObject
     public GameObject specialPowerPrefab;
 
     [Header("Stats")]
-    public int healthPoint;
+    public int healthPoint = 100;
 
     [Header("Card Infos")]
     public string characterName;

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0bccc5d5bbc863a44b3ed2ba95551f5a, type: 3}
-  m_Name: Crossbow
+  m_Name: Crossbow_SO
   m_EditorClassIdentifier: 
-  fireMode: 0
+  fireMode: 1
   bulletPrefab: {fileID: 3444065535886247777, guid: bf45b1e596c1d184ba83442320c50877, type: 3}
   bulletDamage: 20
   fireRate: 0.4
@@ -25,7 +25,7 @@ MonoBehaviour:
   muzzleflashLifeTime: 0.05
   maxTargetsPenetration: 0
   penetrationMultiplier: 0.5
-  magazine: 20
+  magazine: 1
   reloadTime: 1
   bulletShellEffect: {fileID: 0}
   shootAudio: {fileID: 0}
