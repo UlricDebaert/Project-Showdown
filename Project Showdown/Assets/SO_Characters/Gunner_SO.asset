@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 448daa073c09ad5418dd3d379fbe497c, type: 3}
   m_Name: Gunner_SO
   m_EditorClassIdentifier: 
-  gun: {fileID: 0}
+  gun: {fileID: 6279097533620971063, guid: ddca89c20603530408b06f916d66c8b2, type: 3}
   gunPos: {x: 0.1, y: 0, z: 0}
   specialPowerPrefab: {fileID: 0}
   healthPoint: 100
