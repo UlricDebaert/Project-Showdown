@@ -9,6 +9,9 @@ public class PlayerPanel : MonoBehaviour
     Transform ownTransform;
     UIManager manager;
 
+    public TMP_Text characterName;
+    public Image characterIcon;
+
     public TMP_Text KDText;
     public TMP_Text AmmoText;
 

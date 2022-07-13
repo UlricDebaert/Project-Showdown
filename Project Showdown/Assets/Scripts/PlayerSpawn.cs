@@ -79,5 +79,15 @@ public class PlayerSpawn : MonoBehaviour
         animOverrideController["Player_Idle_Anim"] = PD.character.idleAnim;
         animOverrideController["Player_Jump_Anim"] = PD.character.jumpAnim;
         animOverrideController["Player_Walk_Anim"] = PD.character.walkAnim;
+
+        StartCoroutine(LateStart());
+    }
+
+    IEnumerator LateStart()
+    {
+        yield return new WaitForSeconds(.1f);
+
+        UIManager.instance.playerPanels[PD.playerID].characterName.text = PD.character.characterName;
+        UIManager.instance.playerPanels[PD.playerID].characterIcon.sprite = PD.character.characterIcon;
     }
 }

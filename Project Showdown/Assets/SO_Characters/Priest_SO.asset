@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gun: {fileID: 1289634052987769306, guid: 7cfefb823bd33d446aef208733e909e8, type: 3}
   gunPos: {x: -0.052, y: 0.264, z: 0}
-  specialPpowerPrefab: {fileID: 0}
+  specialPowerPrefab: {fileID: 0}
   healthPoint: 100
   characterName: Priest
-  characterIcon: {fileID: 0}
+  characterIcon: {fileID: 21300000, guid: 02d9dd3bca12de74aa386553b0d151f6, type: 3}
   powerIcon: {fileID: 0}
   baseSprite: {fileID: 21300000, guid: 79d9bd3c3e7687c40a63f0e711aee8bd, type: 3}
   idleAnim: {fileID: 7400000, guid: 7c317c42d3b19714b913de8e9c89c0e1, type: 2}
