@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Gatling_SO
   m_EditorClassIdentifier: 
   fireMode: 3
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 2485881281654894994, guid: 810a5c1264ef6c642b090e23eac12cbd, type: 3}
   bulletDamage: 20
   fireRate: 0.05
   bulletSpeed: 30
