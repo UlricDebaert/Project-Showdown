@@ -62,6 +62,8 @@ public class PlayerSpawn : MonoBehaviour
 
         PD.isDead = false;
         playerSprite.flipX = false;
+
+        UpdatePlayerGraphics();
     }
 
     public void UpdatePlayerGraphics()

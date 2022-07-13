@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public int playerCount;
 
     [Header("Characters")]
-    public CharacterSO characters;
+    public CharacterSO[] characters;
 
     void Awake()
     {

@@ -22,6 +22,11 @@ public class PlayerData : MonoBehaviour
     Rigidbody2D rb;
     BoxCollider2D ownCollider;
 
+    private void Awake()
+    {
+        character = GameManager.instance.characters[Random.Range(0, GameManager.instance.characters.Length)];
+    }
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();

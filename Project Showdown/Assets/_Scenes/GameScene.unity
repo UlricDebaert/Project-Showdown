@@ -809,7 +809,10 @@ MonoBehaviour:
   - {fileID: 1456456060}
   - {fileID: 253957589}
   playerCount: 0
-  characters: {fileID: 0}
+  characters:
+  - {fileID: 11400000, guid: 90dab16774b9dfd4a9df52f274d98b2d, type: 2}
+  - {fileID: 11400000, guid: 78d17d4351b2aa44698380ba20419b89, type: 2}
+  - {fileID: 11400000, guid: 47f5250c1c3840145b5cdcf43413fb03, type: 2}
 --- !u!1 &1045218627
 GameObject:
   m_ObjectHideFlags: 0
