@@ -22,6 +22,10 @@ public class PlayerData : MonoBehaviour
     Rigidbody2D rb;
     BoxCollider2D ownCollider;
 
+    //Death Anim
+    PlayerController PC;
+    const string playerDeath = "Player_Death_Anim";
+
     private void Awake()
     {
         character = GameManager.instance.characters[Random.Range(0, GameManager.instance.characters.Length)];
@@ -31,6 +35,8 @@ public class PlayerData : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         ownCollider = GetComponent<BoxCollider2D>();
+
+        PC = GetComponent<PlayerController>();
 
         killCount = 0;
         deathCount = 0;
@@ -54,6 +60,7 @@ public class PlayerData : MonoBehaviour
         canShoot = false; canMove = false; isDead = true;
         rb.isKinematic = true;
         ownCollider.enabled = false;
+        PC.ChangeAnimationState(playerDeath);
     }
 
     public void IncreaseKillCount()

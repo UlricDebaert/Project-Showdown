@@ -24,5 +24,7 @@ public class CharacterSO : ScriptableObject
     public Sprite baseSprite;
     public AnimationClip idleAnim;
     public AnimationClip walkAnim;
+    public AnimationClip walkBackAnim;
     public AnimationClip jumpAnim;
+    public AnimationClip deathAnim;
 }

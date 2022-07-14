@@ -79,6 +79,8 @@ public class PlayerSpawn : MonoBehaviour
         animOverrideController["Player_Idle_Anim"] = PD.character.idleAnim;
         animOverrideController["Player_Jump_Anim"] = PD.character.jumpAnim;
         animOverrideController["Player_Walk_Anim"] = PD.character.walkAnim;
+        animOverrideController["Player_WalkBack_Anim"] = PD.character.walkBackAnim;
+        animOverrideController["Player_Death_Anim"] = PD.character.deathAnim;
 
         StartCoroutine(LateStart());
     }

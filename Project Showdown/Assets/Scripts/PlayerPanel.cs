@@ -31,6 +31,6 @@ public class PlayerPanel : MonoBehaviour
 
     public void UpdateAmmoCount(int currentAmmo, int maxAmmo)
     {
-        AmmoText.text = "Ammo : " + currentAmmo.ToString() + " / " + maxAmmo.ToString();
+        AmmoText.text = "Ammo: " + currentAmmo.ToString() + " / " + maxAmmo.ToString();
     }
 }

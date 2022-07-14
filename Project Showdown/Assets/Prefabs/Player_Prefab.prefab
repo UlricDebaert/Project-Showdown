@@ -186,6 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 8
   movementSmoothing: 0.07
+  walkBackCoeff: 0.3
   jumpForce: 8
   airDragMultiplier: 0.75
   groundLayer:

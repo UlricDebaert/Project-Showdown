@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     float horizontalInput;
     public float moveSpeed;
     [Range(0, .3f)] public float movementSmoothing = .05f;
+    public float walkBackCoeff = .5f;
     Rigidbody2D rb;
     Vector3 velocity = Vector3.zero;
 
@@ -32,11 +33,13 @@ public class PlayerController : MonoBehaviour
     const string playerIdle = "Player_Idle_Anim";
     const string playerJump = "Player_Jump_Anim";
     const string playerWalk = "Player_Walk_Anim";
+    const string playerWalkBack = "Player_WalkBack_Anim";
 
     //Inputs
     PlayerInput inputActions;
     InputAction aimInput;
     Vector2 lookPosition;
+    Vector2 lastLookPosition;
 
     void Start()
     {
@@ -44,6 +47,7 @@ public class PlayerController : MonoBehaviour
         inputActions = GetComponent<PlayerInput>();
         PD = GetComponent<PlayerData>();
         aimInput = inputActions.actions["Aim"];
+        lastLookPosition = Vector2.right;
     }
 
 
@@ -68,10 +72,12 @@ public class PlayerController : MonoBehaviour
 
         if (isGrounded)
         {
-            // Move the character by finding the target velocity
-            targetVelocity = new Vector2(horizontalInput * Time.deltaTime * moveSpeed * 100, rb.velocity.y);
+            // Move the character by finding the target 
+            if(lastLookPosition.x * horizontalInput > 0) targetVelocity = new Vector2(horizontalInput * Time.deltaTime * moveSpeed * 100, rb.velocity.y);
+            else targetVelocity = new Vector2(horizontalInput * Time.deltaTime * moveSpeed * 100 * walkBackCoeff, rb.velocity.y);
 
-            if (horizontalInput != 0) ChangeAnimationState(playerWalk);
+            if (lastLookPosition.x * horizontalInput > 0) ChangeAnimationState(playerWalk);
+            else if (lastLookPosition.x * horizontalInput < 0) ChangeAnimationState(playerWalkBack);
             else ChangeAnimationState(playerIdle);
         }
         else
@@ -106,6 +112,11 @@ public class PlayerController : MonoBehaviour
             if (lookPosition.x < minimalFlipSensitivity) playerSprite.flipX = true;
             else playerSprite.flipX = false;
         }
+
+        if(lookPosition != Vector2.zero)
+        {
+            lastLookPosition = lookPosition;
+        }
     }
     
     private void CheckSurroundings()
@@ -118,7 +129,7 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawWireSphere(groundCheckPos.position, groundCheckRadius);
     }
 
-    void ChangeAnimationState(string newAnimation)
+    public void ChangeAnimationState(string newAnimation)
     {
         if (currentAnimation == newAnimation) return;
 
