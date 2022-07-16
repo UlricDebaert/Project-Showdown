@@ -56,7 +56,7 @@ public class PlayerData : MonoBehaviour
     {
         IncreaseDeathCount();
         Destroy(ownGun);
-        Destroy(ownPower);
+        //Destroy(ownPower);
         canShoot = false; canMove = false; isDead = true;
         rb.isKinematic = true;
         ownCollider.enabled = false;

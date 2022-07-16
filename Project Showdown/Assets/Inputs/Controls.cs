@@ -81,6 +81,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""SpecialPower"",
+                    ""type"": ""Button"",
+                    ""id"": ""6acd35c8-6ab8-44af-be9d-f8e98ba2071c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -171,6 +179,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b2acee60-5669-4b85-8291-a372b4d8fe66"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SpecialPower"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -214,6 +233,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Gameplay_SwitchCharacter = m_Gameplay.FindAction("SwitchCharacter", throwIfNotFound: true);
         m_Gameplay_Spawn = m_Gameplay.FindAction("Spawn", throwIfNotFound: true);
         m_Gameplay_Reload = m_Gameplay.FindAction("Reload", throwIfNotFound: true);
+        m_Gameplay_SpecialPower = m_Gameplay.FindAction("SpecialPower", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_OpenCharacterMenu = m_UI.FindAction("OpenCharacterMenu", throwIfNotFound: true);
@@ -274,6 +294,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_SwitchCharacter;
     private readonly InputAction m_Gameplay_Spawn;
     private readonly InputAction m_Gameplay_Reload;
+    private readonly InputAction m_Gameplay_SpecialPower;
     public struct GameplayActions
     {
         private @Controls m_Wrapper;
@@ -286,6 +307,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @SwitchCharacter => m_Wrapper.m_Gameplay_SwitchCharacter;
         public InputAction @Spawn => m_Wrapper.m_Gameplay_Spawn;
         public InputAction @Reload => m_Wrapper.m_Gameplay_Reload;
+        public InputAction @SpecialPower => m_Wrapper.m_Gameplay_SpecialPower;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -319,6 +341,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Reload.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnReload;
                 @Reload.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnReload;
                 @Reload.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnReload;
+                @SpecialPower.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSpecialPower;
+                @SpecialPower.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSpecialPower;
+                @SpecialPower.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSpecialPower;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -347,6 +372,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Reload.started += instance.OnReload;
                 @Reload.performed += instance.OnReload;
                 @Reload.canceled += instance.OnReload;
+                @SpecialPower.started += instance.OnSpecialPower;
+                @SpecialPower.performed += instance.OnSpecialPower;
+                @SpecialPower.canceled += instance.OnSpecialPower;
             }
         }
     }
@@ -394,6 +422,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnSwitchCharacter(InputAction.CallbackContext context);
         void OnSpawn(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
+        void OnSpecialPower(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

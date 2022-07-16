@@ -1,0 +1,70 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class SP_DynamiteThrower : MonoBehaviour
+{
+    public GameObject dynamitePrefab;
+
+    public float throwPower;
+    public float reloadTime;
+    float reloadTimer;
+
+    bool canThrow;
+
+    PlayerData PD;
+
+    PlayerInput playerInput;
+    InputAction specialPowerInput;
+    InputAction aimInput;
+    float inputHold;
+    public float minimalInputSensitivity = 0.5f;
+
+    Vector2 lookPosition;
+
+    private void Start()
+    {
+        playerInput = GetComponentInParent<PlayerInput>();
+        PD = GetComponentInParent<PlayerData>();
+        specialPowerInput = playerInput.actions["SpecialPower"];
+        aimInput = playerInput.actions["Aim"];
+    }
+
+    private void Update()
+    {
+        Aim();
+
+        specialPowerInput.performed += ctx => inputHold = ctx.ReadValue<float>();
+        specialPowerInput.canceled += ctx => inputHold = ctx.ReadValue<float>();
+
+        if (inputHold > .5f && !PD.isDead && canThrow)
+        {
+            ThrowDynamite();
+            reloadTimer = reloadTime;
+        }
+
+        if (reloadTimer <= 0.0f) Timer();
+        else canThrow = true;
+    }
+
+    void Timer()
+    {
+        reloadTimer -= Time.deltaTime;
+    }
+
+    void Aim()
+    {
+        lookPosition = aimInput.ReadValue<Vector2>();
+        if (lookPosition.x > minimalInputSensitivity || lookPosition.y > minimalInputSensitivity || lookPosition.x < -minimalInputSensitivity || lookPosition.y < -minimalInputSensitivity)
+        {
+            transform.localEulerAngles = new Vector3(0f, 0f, Mathf.Atan2(lookPosition.x, lookPosition.y) * -180 / Mathf.PI + 90f);
+        }
+    }
+
+    void ThrowDynamite()
+    {
+        GameObject dynamite = Instantiate(dynamitePrefab, gameObject.transform.position, gameObject.transform.rotation);
+        dynamite.GetComponent<Rigidbody2D>().AddForce(throwPower * gameObject.transform.right.normalized, ForceMode2D.Impulse);
+    }
+}

@@ -30,6 +30,13 @@ public class PlayerSpawn : MonoBehaviour
         inputs = GetComponent<PlayerInput>();
         selfTransform = GetComponent<Transform>();
         Spawn();
+
+        if (PD.character.specialPowerPrefab != null)
+        {
+            GameObject ownPower = Instantiate(PD.character.specialPowerPrefab, PD.gameObject.transform);
+            PD.ownPower = ownPower;
+        }
+
     }
 
     private void Update()
@@ -44,12 +51,6 @@ public class PlayerSpawn : MonoBehaviour
     {
         selfTransform.position = GameManager.instance.spawnPoints[Random.Range(0, GameManager.instance.spawnPoints.Length)].position;
         PD.healthPoint = PD.character.healthPoint;
-
-        if (PD.character.specialPowerPrefab != null)
-        {
-            GameObject ownPower = Instantiate(PD.character.specialPowerPrefab, PD.gameObject.transform);
-            PD.ownPower = ownPower;
-        }
 
         GameObject ownGun = Instantiate(PD.character.gun, PD.gameObject.transform);
         ownGun.transform.localPosition = PD.character.gunPos;
