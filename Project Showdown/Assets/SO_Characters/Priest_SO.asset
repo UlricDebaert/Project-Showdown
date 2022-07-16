@@ -21,5 +21,7 @@ MonoBehaviour:
   powerIcon: {fileID: 0}
   baseSprite: {fileID: 21300000, guid: 79d9bd3c3e7687c40a63f0e711aee8bd, type: 3}
   idleAnim: {fileID: 7400000, guid: 7c317c42d3b19714b913de8e9c89c0e1, type: 2}
-  walkAnim: {fileID: 7400000, guid: 6324fe1efdffcc14694e4bf58b39928d, type: 2}
-  jumpAnim: {fileID: 7400000, guid: d81672c99a2b5f248afe088b6538381c, type: 2}
+  walkAnim: {fileID: 7400000, guid: d81672c99a2b5f248afe088b6538381c, type: 2}
+  walkBackAnim: {fileID: 7400000, guid: 5458821342dcf9746b2f4163e0413bae, type: 2}
+  jumpAnim: {fileID: 7400000, guid: 6324fe1efdffcc14694e4bf58b39928d, type: 2}
+  deathAnim: {fileID: 7400000, guid: 3aea261e43446ed4f81d2c5464598695, type: 2}

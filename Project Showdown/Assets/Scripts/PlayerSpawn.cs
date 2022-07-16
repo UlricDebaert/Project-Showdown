@@ -73,8 +73,7 @@ public class PlayerSpawn : MonoBehaviour
         if (originalAnimationController != null)
             animOverrideController = new AnimatorOverrideController(AssetDatabase.LoadAssetAtPath<AnimatorController>(AssetDatabase.GetAssetPath(originalAnimationController)));
 
-        if (anim.runtimeAnimatorController != null)
-            anim.runtimeAnimatorController = animOverrideController;
+        anim.runtimeAnimatorController = animOverrideController;
 
         animOverrideController["Player_Idle_Anim"] = PD.character.idleAnim;
         animOverrideController["Player_Jump_Anim"] = PD.character.jumpAnim;
