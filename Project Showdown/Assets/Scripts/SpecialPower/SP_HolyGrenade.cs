@@ -2,23 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SP_Dynamite : MonoBehaviour
+public class SP_HolyGrenade : MonoBehaviour
 {
     Rigidbody2D rb;
     BoxCollider2D ownCollider;
     Animator anim;
     [HideInInspector] public PlayerData PD;
 
-    public int damage;
-    public AnimationCurve damageFalloff;
+    List<PlayerData> currentPlayerDatas = new List<PlayerData>();
+    List<PlayerData> oldPlayerDatas = new List<PlayerData>();
 
     public float explosionRange;
     public float explosionSize;
     public float explosionTime;
-    public float disappearTime;
 
     public LayerMask playerLayer;
-    public LayerMask groundLayer;
 
     bool exploded;
 
@@ -38,6 +36,15 @@ public class SP_Dynamite : MonoBehaviour
         anim.SetBool("exploded", exploded);
     }
 
+    private void FixedUpdate()
+    {
+        if (exploded)
+        {
+            Neutralization();
+            CheckList();
+        }
+    }
+
     public void Explosion()
     {
         transform.rotation = Quaternion.identity;
@@ -45,32 +52,38 @@ public class SP_Dynamite : MonoBehaviour
         rb.isKinematic = true;
         ownCollider.enabled = false;
         exploded = true;
+    }
 
-        //Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRange);
+    void Neutralization()
+    {
         Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), explosionRange);
         foreach (Collider2D hit in colliders)
         {
-            //print("BOOM");
-            if((playerLayer & (1 << hit.transform.gameObject.layer)) > 0)
+            print("hit detected");
+            if ((playerLayer & (1 << hit.transform.gameObject.layer)) > 0)
             {
-                //print("BOOM PLAYER");
-                RaycastHit2D hitObject = Physics2D.Raycast(transform.position, hit.transform.position, Vector2.Distance(transform.position, hit.transform.position), groundLayer);
-                if(hitObject.collider != null)
-                {
-                    //print("BOOM DAMAGE");
-                    int damageApplyied = Mathf.RoundToInt(damage * damageFalloff.Evaluate(Vector2.Distance(transform.position, hit.transform.position) / explosionRange));
-                    hit.GetComponent<PlayerData>().TakeDamage(damageApplyied);
-                    if (hit.GetComponent<PlayerData>().healthPoint <= 0 && hit.gameObject != PD.gameObject) PD.IncreaseKillCount();
-                }
+                print("hit added");
+                currentPlayerDatas.Add(hit.GetComponent<PlayerData>());
             }
         }
-
-        StartCoroutine(Disappear(disappearTime));
     }
 
-    IEnumerator Disappear(float time)
+    void CheckList()
     {
-        yield return new WaitForSeconds(time);
+        for (int i = 0; i < oldPlayerDatas.Count; i++)
+        {
+            oldPlayerDatas[i].canShoot = true;
+        }
+        for (int i = 0; i < currentPlayerDatas.Count; i++)
+        {
+            currentPlayerDatas[i].canShoot = false;
+        }
+        oldPlayerDatas.Clear();
+        oldPlayerDatas = currentPlayerDatas;
+    }
+
+    public void Disappear()
+    {
         Destroy(gameObject);
     }
 

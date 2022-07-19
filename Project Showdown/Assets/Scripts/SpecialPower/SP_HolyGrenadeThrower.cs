@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SP_DynamiteThrower : MonoBehaviour
+public class SP_HolyGrenadeThrower : MonoBehaviour
 {
-    public GameObject dynamitePrefab;
+    public GameObject holyGrenadePrefab;
 
     public float throwPower;
     public float reloadTime;
@@ -68,9 +68,9 @@ public class SP_DynamiteThrower : MonoBehaviour
 
     void ThrowDynamite()
     {
-        GameObject dynamite = Instantiate(dynamitePrefab, gameObject.transform.position, gameObject.transform.rotation);
+        GameObject dynamite = Instantiate(holyGrenadePrefab, gameObject.transform.position, gameObject.transform.rotation);
         dynamite.GetComponent<Rigidbody2D>().AddForce(throwPower * gameObject.transform.right.normalized, ForceMode2D.Impulse);
-        dynamite.GetComponent<SP_Dynamite>().PD = PD;
+        dynamite.GetComponent<SP_HolyGrenade>().PD = PD;
     }
 
     void UpdateUIGraphics()
