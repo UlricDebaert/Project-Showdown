@@ -17,6 +17,9 @@ public class PlayerPanel : MonoBehaviour
 
     public Image loadingIcon;
 
+    public Image SPIcon;
+    public Image SPLoadingIcon;
+
     void Start()
     {
         ownTransform = GetComponent<Transform>();

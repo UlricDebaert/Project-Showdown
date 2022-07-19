@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gun: {fileID: 1289634052987769306, guid: 7cfefb823bd33d446aef208733e909e8, type: 3}
   gunPos: {x: -0.052, y: 0.264, z: 0}
-  specialPowerPrefab: {fileID: 0}
+  specialPowerPrefab: {fileID: 1450965581827860791, guid: da0696eb995064f40bed4b2b69dbc5d8, type: 3}
   healthPoint: 100
   characterName: Priest
   characterIcon: {fileID: 21300000, guid: 02d9dd3bca12de74aa386553b0d151f6, type: 3}

@@ -12,6 +12,7 @@ public class SP_Dynamite : MonoBehaviour
     public AnimationCurve damageFalloff;
 
     public float explosionRange;
+    public float explosionSize;
     public float explosionTime;
     public float disappearTime;
 
@@ -38,19 +39,26 @@ public class SP_Dynamite : MonoBehaviour
 
     public void Explosion()
     {
+        transform.rotation = Quaternion.identity;
+        transform.localScale = new Vector3(explosionSize, explosionSize, explosionSize);
         rb.isKinematic = true;
         ownCollider.enabled = false;
         exploded = true;
 
-        Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRange);
-        foreach (Collider hit in colliders)
+        //Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRange);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), explosionRange);
+        foreach (Collider2D hit in colliders)
         {
+            print("BOOM");
             if((playerLayer & (1 << hit.transform.gameObject.layer)) > 0)
             {
+                print("BOOM PLAYER");
                 RaycastHit2D hitObject = Physics2D.Raycast(transform.position, hit.transform.position, Vector2.Distance(transform.position, hit.transform.position), groundLayer);
-                if(hitObject.collider == null)
+                if(hitObject.collider != null)
                 {
+                    print("BOOM DAMAGE");
                     int damageApplyied = Mathf.RoundToInt(damage * damageFalloff.Evaluate(Vector2.Distance(transform.position, hit.transform.position) / explosionRange));
+                    //int damageApplyied = damage;
                     hit.GetComponent<PlayerData>().TakeDamage(damageApplyied);
                 }
             }

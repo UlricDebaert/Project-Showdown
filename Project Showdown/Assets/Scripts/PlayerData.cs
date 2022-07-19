@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerData : MonoBehaviour
 {
     public CharacterSO character;
+    public Image hpBar;
 
     public int playerID;
 
@@ -15,7 +17,7 @@ public class PlayerData : MonoBehaviour
     public bool canShoot;
     public bool isDead;
 
-    [HideInInspector] public int healthPoint;
+    public int healthPoint;
     [HideInInspector] public GameObject ownGun;
     [HideInInspector] public GameObject ownPower;
 
@@ -47,6 +49,11 @@ public class PlayerData : MonoBehaviour
         UIManager.instance.playerPanels[playerID].UpdateKDText(killCount, deathCount);
     }
 
+    private void Update()
+    {
+        UpdateHpBar();
+    }
+
     public void TakeDamage(int damage)
     {
         healthPoint -= damage;
@@ -73,5 +80,10 @@ public class PlayerData : MonoBehaviour
     {
         deathCount++;
         UIManager.instance.playerPanels[playerID].UpdateKDText(killCount, deathCount);
+    }
+
+    void UpdateHpBar()
+    {
+        hpBar.fillAmount = (float)healthPoint / character.healthPoint;
     }
 }

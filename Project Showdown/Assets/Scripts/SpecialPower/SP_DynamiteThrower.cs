@@ -29,6 +29,7 @@ public class SP_DynamiteThrower : MonoBehaviour
         PD = GetComponentInParent<PlayerData>();
         specialPowerInput = playerInput.actions["SpecialPower"];
         aimInput = playerInput.actions["Aim"];
+        canThrow = true;
     }
 
     private void Update()
@@ -41,11 +42,14 @@ public class SP_DynamiteThrower : MonoBehaviour
         if (inputHold > .5f && !PD.isDead && canThrow)
         {
             ThrowDynamite();
+            canThrow = false;
             reloadTimer = reloadTime;
         }
 
-        if (reloadTimer <= 0.0f) Timer();
+        if (reloadTimer >= 0.0f) Timer();
         else canThrow = true;
+
+        UpdateUIGraphics();
     }
 
     void Timer()
@@ -66,5 +70,10 @@ public class SP_DynamiteThrower : MonoBehaviour
     {
         GameObject dynamite = Instantiate(dynamitePrefab, gameObject.transform.position, gameObject.transform.rotation);
         dynamite.GetComponent<Rigidbody2D>().AddForce(throwPower * gameObject.transform.right.normalized, ForceMode2D.Impulse);
+    }
+
+    void UpdateUIGraphics()
+    {
+        UIManager.instance.playerPanels[PD.playerID].SPLoadingIcon.fillAmount = reloadTimer / reloadTime;
     }
 }

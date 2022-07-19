@@ -997,6 +997,8 @@ MonoBehaviour:
   KDText: {fileID: 7044316467558729759}
   AmmoText: {fileID: 7044316466872623140}
   loadingIcon: {fileID: 6509138845285553280}
+  SPIcon: {fileID: 7044316467086123083}
+  SPLoadingIcon: {fileID: 7044316468400768549}
 --- !u!1 &7044316468051027898
 GameObject:
   m_ObjectHideFlags: 0
