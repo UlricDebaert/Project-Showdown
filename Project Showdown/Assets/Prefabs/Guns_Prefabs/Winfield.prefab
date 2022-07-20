@@ -4915,7 +4915,7 @@ MonoBehaviour:
   bulletShellPrefab: {fileID: 8106218731510900227, guid: 8fd600aeac4dd424f831ba65059870f1, type: 3}
   bulletShellEffect: {fileID: 7319649788327358800}
   minimalInputSensitivity: 0.5
-  originalAnimationController: {fileID: 0}
+  originalAnimationController: {fileID: 9100000, guid: fdd614ecf80ebe642a7db6d3685ac274, type: 2}
 --- !u!212 &7319649788347744978
 SpriteRenderer:
   m_ObjectHideFlags: 0

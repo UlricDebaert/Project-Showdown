@@ -45,7 +45,7 @@ public class Gun : MonoBehaviour
 
     public float minimalInputSensitivity = 0.5f;
 
-    PlayerData playerData;
+    PlayerData PD;
 
     [Header("Debug")]
     public AnimatorController originalAnimationController;
@@ -65,7 +65,7 @@ public class Gun : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
-        playerData = GetComponentInParent<PlayerData>();
+        PD = GetComponentInParent<PlayerData>();
 
         InitAnimOverrideController();
 
@@ -99,7 +99,7 @@ public class Gun : MonoBehaviour
                 shootAutoInput.performed += ctx => fireHold = ctx.ReadValue<float>();
                 shootAutoInput.canceled += ctx => fireHold = ctx.ReadValue<float>();
 
-                if (fireHold > .5 && canShoot && currentAmmoCount > 0)
+                if (fireHold > .5 && canShoot && currentAmmoCount > 0 && PD.canShoot)
                 {
                     Fire();
                     if(bulletShellEffect != null) bulletShellEffect.Play();
@@ -107,7 +107,7 @@ public class Gun : MonoBehaviour
                 break;
 
             case GunSO.shootType.semiAuto:
-                if (shootSemiInput.triggered && canShoot && currentAmmoCount > 0)
+                if (shootSemiInput.triggered && canShoot && currentAmmoCount > 0 && PD.canShoot)
                 {
                     Fire();
                     if (bulletShellEffect != null) bulletShellEffect.Play();
@@ -115,7 +115,7 @@ public class Gun : MonoBehaviour
                 break;
 
             case GunSO.shootType.pump:
-                if (shootSemiInput.triggered && barrelEmpty)
+                if (shootSemiInput.triggered && barrelEmpty && PD.canShoot)
                 {
                     Invoke("EmptyBarrel", 0.1f);
 
@@ -136,12 +136,13 @@ public class Gun : MonoBehaviour
                 shootAutoInput.performed += ctx => fireHold = ctx.ReadValue<float>();
                 shootAutoInput.canceled += ctx => fireHold = ctx.ReadValue<float>();
 
-                if (fireHold > .5 && canShoot && currentAmmoCount > 0 && chargeTimer < gunStats.chargeTime)
+                if (fireHold > .5 && canShoot && currentAmmoCount > 0 && chargeTimer < gunStats.chargeTime && PD.canShoot)
                 {
+                    anim.Play("Gun_Shoot_Anim");
                     chargeTimer += Time.deltaTime;
                 }
 
-                if (fireHold > .5 && canShoot && currentAmmoCount > 0 && chargeTimer > gunStats.chargeTime)
+                if (fireHold > .5 && canShoot && currentAmmoCount > 0 && chargeTimer > gunStats.chargeTime && PD.canShoot)
                 {
                     Fire();
                     if (bulletShellEffect != null) bulletShellEffect.Play();
@@ -234,13 +235,13 @@ public class Gun : MonoBehaviour
             reloadTimer -= Time.deltaTime;
 
             if(reloadTimer > 0.0f)
-                UIManager.instance.playerPanels[playerData.playerID].loadingIcon.fillAmount = reloadTimer / gunStats.reloadTime;
+                UIManager.instance.playerPanels[PD.playerID].loadingIcon.fillAmount = reloadTimer / gunStats.reloadTime;
 
             if (reloadTimer <= 0.0f)
             {
                 currentAmmoCount = gunStats.magazine;
 
-                UIManager.instance.playerPanels[playerData.playerID].loadingIcon.fillAmount = 0.0f;
+                UIManager.instance.playerPanels[PD.playerID].loadingIcon.fillAmount = 0.0f;
 
                 anim.SetBool("emptyMag", false);
 
@@ -276,7 +277,7 @@ public class Gun : MonoBehaviour
 
     void UpdateAmmoCount()
     {
-        UIManager.instance.playerPanels[playerData.playerID].UpdateAmmoCount(currentAmmoCount, gunStats.magazine);
+        UIManager.instance.playerPanels[PD.playerID].UpdateAmmoCount(currentAmmoCount, gunStats.magazine);
     }
 
     void EmptyBarrel()
@@ -292,8 +293,7 @@ public class Gun : MonoBehaviour
         if (originalAnimationController != null) 
             animOverrideController = new AnimatorOverrideController(AssetDatabase.LoadAssetAtPath<AnimatorController>(AssetDatabase.GetAssetPath(originalAnimationController)));
 
-        if (anim.runtimeAnimatorController != null)
-            anim.runtimeAnimatorController = animOverrideController;
+        anim.runtimeAnimatorController = animOverrideController;
 
         animOverrideController["Gun_Shoot_Anim"] = gunStats.shootAnimation;
         animOverrideController["Gun_Idle_Anim"] = gunStats.idleAnimation;
@@ -307,7 +307,7 @@ public class Gun : MonoBehaviour
         yield return new WaitForSeconds(.1f);
 
         UpdateAmmoCount();
-        UIManager.instance.playerPanels[playerData.playerID].loadingIcon.fillAmount = 0.0f;
+        UIManager.instance.playerPanels[PD.playerID].loadingIcon.fillAmount = 0.0f;
     }
 }
 

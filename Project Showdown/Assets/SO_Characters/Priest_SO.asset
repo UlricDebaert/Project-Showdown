@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 448daa073c09ad5418dd3d379fbe497c, type: 3}
   m_Name: Priest_SO
   m_EditorClassIdentifier: 
-  gun: {fileID: 1289634052987769306, guid: 7cfefb823bd33d446aef208733e909e8, type: 3}
+  gun: {fileID: 7319649788347744942, guid: 158f0eedf08bcd44092669ef883979cc, type: 3}
   gunPos: {x: -0.052, y: 0.264, z: 0}
   specialPowerPrefab: {fileID: 1205813032628693985, guid: f950c5970f8ffea42a236b000ac79082, type: 3}
   healthPoint: 100

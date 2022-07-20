@@ -9,8 +9,8 @@ public class SP_HolyGrenade : MonoBehaviour
     Animator anim;
     [HideInInspector] public PlayerData PD;
 
-    List<PlayerData> currentPlayerDatas = new List<PlayerData>();
-    List<PlayerData> oldPlayerDatas = new List<PlayerData>();
+    List<PlayerData> currentPlayerDatas;
+    List<PlayerData> oldPlayerDatas;
 
     public float explosionRange;
     public float explosionSize;
@@ -25,6 +25,9 @@ public class SP_HolyGrenade : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         ownCollider = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
+
+        currentPlayerDatas = new List<PlayerData>();
+        oldPlayerDatas = new List<PlayerData>();
 
         exploded = false;
     }
@@ -41,7 +44,6 @@ public class SP_HolyGrenade : MonoBehaviour
         if (exploded)
         {
             Neutralization();
-            CheckList();
         }
     }
 
@@ -56,6 +58,12 @@ public class SP_HolyGrenade : MonoBehaviour
 
     void Neutralization()
     {
+        for (int i = 0; i < currentPlayerDatas.Count; i++)
+        {
+            currentPlayerDatas[i].canShoot = true;
+            print("canShoot = true");
+        }
+        currentPlayerDatas.Clear();
         Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), explosionRange);
         foreach (Collider2D hit in colliders)
         {
@@ -66,24 +74,34 @@ public class SP_HolyGrenade : MonoBehaviour
                 currentPlayerDatas.Add(hit.GetComponent<PlayerData>());
             }
         }
-    }
-
-    void CheckList()
-    {
-        for (int i = 0; i < oldPlayerDatas.Count; i++)
-        {
-            oldPlayerDatas[i].canShoot = true;
-        }
         for (int i = 0; i < currentPlayerDatas.Count; i++)
         {
             currentPlayerDatas[i].canShoot = false;
+            print("canShoot = false");
         }
-        oldPlayerDatas.Clear();
-        oldPlayerDatas = currentPlayerDatas;
     }
 
     public void Disappear()
     {
+        exploded = false;
+
+        currentPlayerDatas.Clear();
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), explosionRange);
+        foreach (Collider2D hit in colliders)
+        {
+            print("hit detected");
+            if ((playerLayer & (1 << hit.transform.gameObject.layer)) > 0)
+            {
+                print("hit added");
+                currentPlayerDatas.Add(hit.GetComponent<PlayerData>());
+            }
+        }
+        for (int i = 0; i < currentPlayerDatas.Count; i++)
+        {
+            currentPlayerDatas[i].canShoot = true;
+            print("canShoot = true");
+        }
+
         Destroy(gameObject);
     }
 

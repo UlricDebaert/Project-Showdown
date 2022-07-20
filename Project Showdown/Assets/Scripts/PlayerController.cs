@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
         if (currentAnimation == newAnimation) return;
 
         anim.Play(newAnimation);
-        print(newAnimation);
+        //print(newAnimation);
 
         currentAnimation = newAnimation;
     }
