@@ -557,7 +557,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &577637024
 Animator:
   serializedVersion: 3
@@ -912,7 +912,7 @@ MonoBehaviour:
   - {fileID: 253957589}
   playerCount: 0
   characters:
-  - {fileID: 11400000, guid: 47f5250c1c3840145b5cdcf43413fb03, type: 2}
+  - {fileID: 11400000, guid: 78d17d4351b2aa44698380ba20419b89, type: 2}
 --- !u!1 &1045218627
 GameObject:
   m_ObjectHideFlags: 0
@@ -2580,9 +2580,9 @@ Animation:
   serializedVersion: 3
   m_Animation: {fileID: 0}
   m_Animations:
-  - {fileID: 7400000, guid: b2a727cf5f063764880010b52174e210, type: 2}
-  - {fileID: 7400000, guid: 3e9bf85ce9439ad46b43ae494a8517ac, type: 2}
-  - {fileID: 7400000, guid: 8836217b2fce38b468c1ba69c84da3a9, type: 2}
+  - {fileID: 7400000, guid: 2d6867f21c0fc8c41b77e0bd24079000, type: 2}
+  - {fileID: 7400000, guid: 72c6587d708095746b0c1735f3d9793b, type: 2}
+  - {fileID: 7400000, guid: 39ae252d48030fc46a6c008cd823da45, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0

@@ -38,7 +38,7 @@ MonoBehaviour:
   pitchBase: 1
   pitchVariation: 0
   gunSprite: {fileID: 21300000, guid: 24f38e11633f76b4a862072591e75b5d, type: 3}
-  idleAnimation: {fileID: 0}
-  shootAnimation: {fileID: 0}
-  emptyMagazineAnimation: {fileID: 0}
+  idleAnimation: {fileID: 7400000, guid: 72c6587d708095746b0c1735f3d9793b, type: 2}
+  shootAnimation: {fileID: 7400000, guid: 39ae252d48030fc46a6c008cd823da45, type: 2}
+  emptyMagazineAnimation: {fileID: 7400000, guid: 2d6867f21c0fc8c41b77e0bd24079000, type: 2}
   cockingAnimation: {fileID: 0}
