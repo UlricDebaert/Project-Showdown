@@ -2580,9 +2580,9 @@ Animation:
   serializedVersion: 3
   m_Animation: {fileID: 0}
   m_Animations:
-  - {fileID: 7400000, guid: 7880c8e846e274049b6432f1f9699b81, type: 2}
-  - {fileID: 7400000, guid: 2079f40782b163e4cb58cb7711d8381c, type: 2}
-  - {fileID: 7400000, guid: 7d8c56ccdf33caa468d26a3a6217be66, type: 2}
+  - {fileID: 7400000, guid: b2a727cf5f063764880010b52174e210, type: 2}
+  - {fileID: 7400000, guid: 3e9bf85ce9439ad46b43ae494a8517ac, type: 2}
+  - {fileID: 7400000, guid: 8836217b2fce38b468c1ba69c84da3a9, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
