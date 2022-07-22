@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 830602457
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 952f686852c46344589f3d3a67996766, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9acc08a45033fe7469e89fe0fc092792, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,7 +96,7 @@ Animator:
   m_GameObject: {fileID: 6266831672082692452}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 87c1e0d4362ed234ba841cb9642b8c77, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9230892dcf47d28479af2d6b0e92516a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -118,9 +118,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PD: {fileID: 0}
-  explosionRange: 4.5
+  explosionRange: 3.9
   explosionSize: 2
   explosionTime: 3
+  activeTime: 5
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -140,7 +141,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 311fcec19aa4a0c45851c629610c5acd, type: 2}
+  m_Material: {fileID: 6200000, guid: 2e7bf28b12536e3498c31000c130645a, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0

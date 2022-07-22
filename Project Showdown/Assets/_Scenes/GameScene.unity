@@ -557,7 +557,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &577637024
 Animator:
   serializedVersion: 3
@@ -568,7 +568,7 @@ Animator:
   m_GameObject: {fileID: 577637023}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: dde49700522f13f4f90e2dbda8f6b97a, type: 2}
+  m_Controller: {fileID: 22100000, guid: 43cc1d44c52dc1a449ae3c88e7c65e84, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -617,7 +617,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 56022def00e953a46a01860e4960999e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 41bd75a4a8e70d744ad57c84dedc8d9b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -912,7 +912,7 @@ MonoBehaviour:
   - {fileID: 253957589}
   playerCount: 0
   characters:
-  - {fileID: 11400000, guid: 78d17d4351b2aa44698380ba20419b89, type: 2}
+  - {fileID: 11400000, guid: 47f5250c1c3840145b5cdcf43413fb03, type: 2}
 --- !u!1 &1045218627
 GameObject:
   m_ObjectHideFlags: 0
@@ -2580,9 +2580,10 @@ Animation:
   serializedVersion: 3
   m_Animation: {fileID: 0}
   m_Animations:
-  - {fileID: 7400000, guid: 2d6867f21c0fc8c41b77e0bd24079000, type: 2}
-  - {fileID: 7400000, guid: 72c6587d708095746b0c1735f3d9793b, type: 2}
-  - {fileID: 7400000, guid: 39ae252d48030fc46a6c008cd823da45, type: 2}
+  - {fileID: 7400000, guid: 5229d3377fe833947a95739b5030872c, type: 2}
+  - {fileID: 7400000, guid: dc0bcc1340a88e240a6ca14712237766, type: 2}
+  - {fileID: 7400000, guid: af83c7aa4f3edfd4081fb11bd70b89b2, type: 2}
+  - {fileID: 7400000, guid: 7723c3c98c87b5b4fb6aabada937d5b9, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0

@@ -13,12 +13,13 @@ public class SP_HolyGrenade : MonoBehaviour
     List<PlayerData> oldPlayerDatas;
 
     public float explosionRange;
-    public float explosionSize;
     public float explosionTime;
+    public float activeTime;
 
     public LayerMask playerLayer;
 
     bool exploded;
+    bool back;
 
     void Start()
     {
@@ -30,18 +31,31 @@ public class SP_HolyGrenade : MonoBehaviour
         oldPlayerDatas = new List<PlayerData>();
 
         exploded = false;
+        back = false;
+        anim.SetBool("back", false);
     }
 
     private void Update()
     {
         explosionTime -= Time.deltaTime;
         if (explosionTime <= 0.0f && !exploded) Explosion();
-        anim.SetBool("exploded", exploded);
+        anim.SetBool("exploded", back);
+
+        if (exploded && !back) 
+        { 
+            activeTime -= Time.deltaTime; 
+            if(activeTime <= 0.0f)
+            {
+                Disappear();
+                back = true;
+            }
+        }
+
     }
 
     private void FixedUpdate()
     {
-        if (exploded)
+        if (exploded && !back)
         {
             Neutralization();
         }
@@ -50,10 +64,10 @@ public class SP_HolyGrenade : MonoBehaviour
     public void Explosion()
     {
         transform.rotation = Quaternion.identity;
-        transform.localScale = new Vector3(explosionSize, explosionSize, explosionSize);
         rb.isKinematic = true;
         ownCollider.enabled = false;
         exploded = true;
+        anim.Play("HolyGrenade_Explosion");
     }
 
     void Neutralization()
@@ -83,7 +97,6 @@ public class SP_HolyGrenade : MonoBehaviour
 
     public void Disappear()
     {
-        exploded = false;
 
         currentPlayerDatas.Clear();
         Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), explosionRange);
@@ -102,6 +115,11 @@ public class SP_HolyGrenade : MonoBehaviour
             print("canShoot = true");
         }
 
+        anim.Play("HolyGrenade_Back");
+    }
+
+    public void DestroyItSelf()
+    {
         Destroy(gameObject);
     }
 

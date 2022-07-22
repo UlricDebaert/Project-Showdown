@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gun: {fileID: 7319649788347744942, guid: 158f0eedf08bcd44092669ef883979cc, type: 3}
   gunPos: {x: 0, y: 0.32, z: 0}
-  specialPowerPrefab: {fileID: 0}
+  specialPowerPrefab: {fileID: 1450965581827860791, guid: da0696eb995064f40bed4b2b69dbc5d8, type: 3}
   healthPoint: 100
   characterName: Cowgirl
   characterIcon: {fileID: 21300000, guid: 47a47cbd993d9cd4aad1491ccea93fab, type: 3}

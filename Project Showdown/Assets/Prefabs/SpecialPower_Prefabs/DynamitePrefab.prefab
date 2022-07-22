@@ -117,6 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06862842e4e6eea4594a6bc4769c419d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PD: {fileID: 0}
   damage: 100
   damageFalloff:
     serializedVersion: 2
@@ -130,6 +131,15 @@ MonoBehaviour:
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.09801762
+    - serializedVersion: 3
+      time: 0.64903176
+      value: 0.625034
+      inSlope: -1.2788785
+      outSlope: -1.2788785
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 0

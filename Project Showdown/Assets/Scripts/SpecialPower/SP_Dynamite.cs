@@ -43,6 +43,8 @@ public class SP_Dynamite : MonoBehaviour
         transform.rotation = Quaternion.identity;
         transform.localScale = new Vector3(explosionSize, explosionSize, explosionSize);
         rb.isKinematic = true;
+        rb.velocity = Vector2.zero;
+        rb.freezeRotation = true;
         ownCollider.enabled = false;
         exploded = true;
 
