@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gun: {fileID: 6279097533620971063, guid: ddca89c20603530408b06f916d66c8b2, type: 3}
   gunPos: {x: 0, y: 0, z: 0}
-  specialPowerPrefab: {fileID: 0}
+  specialPowerPrefab: {fileID: 2378579046998577658, guid: d057a40ef03a7754dbe3a458eac88398, type: 3}
   healthPoint: 100
   characterName: Gunner
   characterIcon: {fileID: 21300000, guid: ed1db00f77b583a479a285ca9ce2452f, type: 3}

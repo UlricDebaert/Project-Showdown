@@ -340,6 +340,7 @@ MonoBehaviour:
   firePoint: {fileID: 1705722780}
   bulletShellPrefab: {fileID: 0}
   bulletShellEffect: {fileID: 0}
+  isHolsterWeapon: 0
   minimalInputSensitivity: 0.5
   originalAnimationController: {fileID: 0}
 --- !u!1 &86223104
@@ -2580,10 +2581,9 @@ Animation:
   serializedVersion: 3
   m_Animation: {fileID: 0}
   m_Animations:
-  - {fileID: 7400000, guid: 5229d3377fe833947a95739b5030872c, type: 2}
-  - {fileID: 7400000, guid: dc0bcc1340a88e240a6ca14712237766, type: 2}
-  - {fileID: 7400000, guid: af83c7aa4f3edfd4081fb11bd70b89b2, type: 2}
-  - {fileID: 7400000, guid: 7723c3c98c87b5b4fb6aabada937d5b9, type: 2}
+  - {fileID: 7400000, guid: 666981f95c782c147b1bc7dd41388930, type: 2}
+  - {fileID: 7400000, guid: 3e975172928e1614996a41ae5ac881b7, type: 2}
+  - {fileID: 7400000, guid: f6e2910a56239f847a221b8b4b59fb12, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0

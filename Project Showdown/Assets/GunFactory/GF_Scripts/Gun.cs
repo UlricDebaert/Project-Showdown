@@ -34,12 +34,16 @@ public class Gun : MonoBehaviour
     bool barrelEmpty;
     float chargeTimer;
 
+    //specific Holster Weapon
+    public bool isHolsterWeapon = false;
+
     PlayerInput inputActions;
     InputAction aimInput;
     float fireHold;
     InputAction shootAutoInput;
     InputAction shootSemiInput;
     InputAction reloadInput;
+    InputAction specialPowerInput;
     Vector2 lookPosition;
     Camera mainCamera;
 
@@ -57,6 +61,7 @@ public class Gun : MonoBehaviour
         shootAutoInput = inputActions.actions["AutoFire"];
         shootSemiInput = inputActions.actions["SemiFire"];
         reloadInput = inputActions.actions["Reload"];
+        specialPowerInput = inputActions.actions["SpecialPower"];
     }
 
     void Start()
@@ -92,68 +97,86 @@ public class Gun : MonoBehaviour
 
     void CheckInput()
     {
-        switch (gunStats.fireMode)
+        if (!isHolsterWeapon)
         {
-            case GunSO.shootType.fullAuto:
+            switch (gunStats.fireMode)
+            {
+                case GunSO.shootType.fullAuto:
 
-                shootAutoInput.performed += ctx => fireHold = ctx.ReadValue<float>();
-                shootAutoInput.canceled += ctx => fireHold = ctx.ReadValue<float>();
+                    shootAutoInput.performed += ctx => fireHold = ctx.ReadValue<float>();
+                    shootAutoInput.canceled += ctx => fireHold = ctx.ReadValue<float>();
 
-                if (fireHold > .5 && canShoot && currentAmmoCount > 0 && PD.canShoot)
-                {
-                    Fire();
-                    if(bulletShellEffect != null) bulletShellEffect.Play();
-                }
-                break;
+                    if (fireHold > .5 && canShoot && currentAmmoCount > 0 && PD.canShoot)
+                    {
+                        Fire();
+                        if (bulletShellEffect != null) bulletShellEffect.Play();
+                    }
+                    break;
 
-            case GunSO.shootType.semiAuto:
-                if (shootSemiInput.triggered && canShoot && currentAmmoCount > 0 && PD.canShoot)
-                {
-                    Fire();
-                    if (bulletShellEffect != null) bulletShellEffect.Play();
-                }
-                break;
+                case GunSO.shootType.semiAuto:
+                    if (shootSemiInput.triggered && canShoot && currentAmmoCount > 0 && PD.canShoot)
+                    {
+                        Fire();
+                        if (bulletShellEffect != null) bulletShellEffect.Play();
+                    }
+                    break;
 
-            case GunSO.shootType.pump:
-                if (shootSemiInput.triggered && barrelEmpty && PD.canShoot)
-                {
-                    Invoke("EmptyBarrel", 0.1f);
+                case GunSO.shootType.pump:
+                    if (shootSemiInput.triggered && barrelEmpty && PD.canShoot)
+                    {
+                        Invoke("EmptyBarrel", 0.1f);
 
-                    if(gunStats.cockingAnimation != null)
-                        anim.Play("Gun_Cocking_Anim");
+                        if (gunStats.cockingAnimation != null)
+                            anim.Play("Gun_Cocking_Anim");
 
-                    if (bulletShellEffect != null) bulletShellEffect.Play();
-                }
-                if (shootSemiInput.triggered && canShoot && currentAmmoCount > 0 && !barrelEmpty)
-                {
-                    Fire();
-                    Invoke("EmptyBarrel", 0.1f);
-                }
-                break;
+                        if (bulletShellEffect != null) bulletShellEffect.Play();
+                    }
+                    if (shootSemiInput.triggered && canShoot && currentAmmoCount > 0 && !barrelEmpty)
+                    {
+                        Fire();
+                        Invoke("EmptyBarrel", 0.1f);
+                    }
+                    break;
 
-            case GunSO.shootType.charge:
+                case GunSO.shootType.charge:
 
-                shootAutoInput.performed += ctx => fireHold = ctx.ReadValue<float>();
-                shootAutoInput.canceled += ctx => fireHold = ctx.ReadValue<float>();
+                    shootAutoInput.performed += ctx => fireHold = ctx.ReadValue<float>();
+                    shootAutoInput.canceled += ctx => fireHold = ctx.ReadValue<float>();
 
-                if (fireHold > .5 && canShoot && currentAmmoCount > 0 && chargeTimer < gunStats.chargeTime && PD.canShoot)
-                {
-                    anim.Play("Gun_Shoot_Anim");
-                    chargeTimer += Time.deltaTime;
-                }
+                    if (fireHold > .5 && canShoot && currentAmmoCount > 0 && chargeTimer < gunStats.chargeTime && PD.canShoot)
+                    {
+                        anim.Play("Gun_Shoot_Anim");
+                        chargeTimer += Time.deltaTime;
+                    }
 
-                if (fireHold > .5 && canShoot && currentAmmoCount > 0 && chargeTimer > gunStats.chargeTime && PD.canShoot)
-                {
-                    Fire();
-                    if (bulletShellEffect != null) bulletShellEffect.Play();
-                }
+                    if (fireHold > .5 && canShoot && currentAmmoCount > 0 && chargeTimer > gunStats.chargeTime && PD.canShoot)
+                    {
+                        Fire();
+                        if (bulletShellEffect != null) bulletShellEffect.Play();
+                    }
 
-                if (fireHold < .5 && chargeTimer != 0.0f)
-                {
-                    chargeTimer = 0.0f;
-                }
-                break;
+                    if (fireHold < .5 && chargeTimer != 0.0f)
+                    {
+                        chargeTimer = 0.0f;
+                    }
+                    break;
 
+            }
+        }
+
+        if (isHolsterWeapon)
+        {
+            switch (gunStats.fireMode)
+            {
+                case GunSO.shootType.fullAuto:
+
+                    if (canShoot && currentAmmoCount > 0 && PD.canShoot)
+                    {
+                        Fire();
+                        if (bulletShellEffect != null) bulletShellEffect.Play();
+                    }
+                    break;
+            }
         }
     }
 
@@ -275,7 +298,7 @@ public class Gun : MonoBehaviour
         }
     }
 
-    void UpdateAmmoCount()
+    public void UpdateAmmoCount()
     {
         UIManager.instance.playerPanels[PD.playerID].UpdateAmmoCount(currentAmmoCount, gunStats.magazine);
     }
