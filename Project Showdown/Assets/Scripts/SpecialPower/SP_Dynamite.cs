@@ -56,8 +56,9 @@ public class SP_Dynamite : MonoBehaviour
             if((playerLayer & (1 << hit.transform.gameObject.layer)) > 0)
             {
                 //print("BOOM PLAYER");
-                RaycastHit2D hitObject = Physics2D.Raycast(transform.position, hit.transform.position, Vector2.Distance(transform.position, hit.transform.position), groundLayer);
-                if(hitObject.collider != null)
+                //RaycastHit2D hitObject = Physics2D.Raycast(transform.position, hit.transform.position, Vector2.Distance(transform.position, hit.transform.position), groundLayer);
+                //print(Physics2D.Linecast(transform.position, hit.transform.position, groundLayer));
+                if(!Physics2D.Linecast(transform.position, hit.transform.position, groundLayer))
                 {
                     //print("BOOM DAMAGE");
                     int damageApplyied = Mathf.RoundToInt(damage * damageFalloff.Evaluate(Vector2.Distance(transform.position, hit.transform.position) / explosionRange));
