@@ -5,7 +5,7 @@ using UnityEngine;
 public class SP_HolyGrenade : MonoBehaviour
 {
     Rigidbody2D rb;
-    BoxCollider2D ownCollider;
+    Collider2D ownCollider;
     Animator anim;
     [HideInInspector] public PlayerData PD;
 
@@ -24,7 +24,7 @@ public class SP_HolyGrenade : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        ownCollider = GetComponent<BoxCollider2D>();
+        ownCollider = GetComponent<Collider2D>();
         anim = GetComponent<Animator>();
 
         currentPlayerDatas = new List<PlayerData>();
@@ -65,6 +65,8 @@ public class SP_HolyGrenade : MonoBehaviour
     {
         transform.rotation = Quaternion.identity;
         rb.isKinematic = true;
+        rb.freezeRotation = true;
+        rb.velocity = Vector3.zero;
         ownCollider.enabled = false;
         exploded = true;
         anim.Play("HolyGrenade_Explosion");

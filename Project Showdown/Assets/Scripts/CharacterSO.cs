@@ -27,4 +27,5 @@ public class CharacterSO : ScriptableObject
     public AnimationClip walkBackAnim;
     public AnimationClip jumpAnim;
     public AnimationClip deathAnim;
+    public AnimationClip specialPowerAnim;
 }

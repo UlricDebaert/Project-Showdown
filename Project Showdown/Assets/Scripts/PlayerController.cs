@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
     const string playerJump = "Player_Jump_Anim";
     const string playerWalk = "Player_Walk_Anim";
     const string playerWalkBack = "Player_WalkBack_Anim";
+    const string playerSpecialPower = "Player_SpecialPower_Anim";
 
     //Inputs
     PlayerInput inputActions;
@@ -131,7 +132,7 @@ public class PlayerController : MonoBehaviour
 
     public void ChangeAnimationState(string newAnimation)
     {
-        if (currentAnimation == newAnimation) return;
+        if (currentAnimation == newAnimation || currentAnimation == playerSpecialPower) return;
 
         anim.Play(newAnimation);
         //print(newAnimation);

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 448daa073c09ad5418dd3d379fbe497c, type: 3}
   m_Name: Demon_SO
   m_EditorClassIdentifier: 
-  gun: {fileID: 6933716816541453057, guid: e5edb864e31c2534db8f5e9defd3d024, type: 3}
+  gun: {fileID: 1439054127527202723, guid: 4b79f6c28cf55bb4f9255ee4e011593d, type: 3}
   gunPos: {x: 0, y: 0, z: 0}
   specialPowerPrefab: {fileID: 2600207433280838597, guid: 0c6e017ec99a5fd478ac2c764f244b9c, type: 3}
   healthPoint: 100
@@ -24,4 +24,5 @@ MonoBehaviour:
   walkAnim: {fileID: 7400000, guid: 0dd816aa49ee74f47b3afcead752f2fc, type: 2}
   walkBackAnim: {fileID: 7400000, guid: 2ce0b4371ae6d4443b77a04818f602f4, type: 2}
   jumpAnim: {fileID: 7400000, guid: 29d0baba1b72444449754c06106e2598, type: 2}
-  deathAnim: {fileID: 0}
+  deathAnim: {fileID: 7400000, guid: ff54b784f4af43448a04fba38f8df185, type: 2}
+  specialPowerAnim: {fileID: 7400000, guid: a86a9c84cf6420c43a79585610430c3f, type: 2}

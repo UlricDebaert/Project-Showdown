@@ -913,7 +913,7 @@ MonoBehaviour:
   - {fileID: 253957589}
   playerCount: 0
   characters:
-  - {fileID: 11400000, guid: 9a16f27ac2713334fa92be234ecd92b7, type: 2}
+  - {fileID: 11400000, guid: 47f5250c1c3840145b5cdcf43413fb03, type: 2}
 --- !u!1 &1045218627
 GameObject:
   m_ObjectHideFlags: 0
@@ -2690,10 +2690,9 @@ Animation:
   serializedVersion: 3
   m_Animation: {fileID: 0}
   m_Animations:
-  - {fileID: 7400000, guid: 9f3d1d8d5eeacd34d9a0a12b62c76f68, type: 2}
-  - {fileID: 7400000, guid: 29d0baba1b72444449754c06106e2598, type: 2}
-  - {fileID: 7400000, guid: 0dd816aa49ee74f47b3afcead752f2fc, type: 2}
-  - {fileID: 7400000, guid: 2ce0b4371ae6d4443b77a04818f602f4, type: 2}
+  - {fileID: 7400000, guid: 2079f40782b163e4cb58cb7711d8381c, type: 2}
+  - {fileID: 7400000, guid: 1b6f9357e4b37ad4d9357e4125f84b0f, type: 2}
+  - {fileID: 7400000, guid: 49ecc65863c3efb48b1fac20d000a51a, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0

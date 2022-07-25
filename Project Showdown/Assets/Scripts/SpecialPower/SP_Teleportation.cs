@@ -21,6 +21,8 @@ public class SP_Teleportation : MonoBehaviour
     float reloadTimer;
     bool canTeleport;
 
+    const string playerSpecialPower = "Player_SpecialPower_Anim";
+
     void Start()
     {
         PD = GetComponentInParent<PlayerData>();
@@ -61,6 +63,7 @@ public class SP_Teleportation : MonoBehaviour
         PD.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
         PD.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
         PD.canMove = false;
+        PD.gameObject.GetComponent<PlayerController>().ChangeAnimationState(playerSpecialPower);
 
         Vector3 newPos = PD.gameObject.transform.position + lookPosition.normalized * teleportDistance;
 
