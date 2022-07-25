@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minimalInputSensitivity: 0.5
-  teleportTime: 1
+  teleportTime: 0.28
   teleportDistance: 5
   reloadTime: 2

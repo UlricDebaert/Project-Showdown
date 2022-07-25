@@ -64,15 +64,20 @@ public class SP_Teleportation : MonoBehaviour
         PD.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
         PD.canMove = false;
         PD.gameObject.GetComponent<PlayerController>().ChangeAnimationState(playerSpecialPower);
+        PD.gameObject.GetComponent<PlayerController>().animLock = true;
 
         Vector3 newPos = PD.gameObject.transform.position + lookPosition.normalized * teleportDistance;
+        //print("get input");
 
         yield return new WaitForSeconds(teleportTime);
         PD.gameObject.transform.position = newPos;
+        //print("tp");
 
-        yield return new WaitForSeconds(teleportTime);
+        //yield return new WaitForSeconds(teleportTime);
+        PD.gameObject.GetComponent<PlayerController>().animLock = false;
         PD.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
         PD.canMove = true;
+        //print("release");
     }
 
     void Aim()
