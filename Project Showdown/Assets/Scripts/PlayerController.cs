@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;
 
     [Header("Ground Check")]
-    bool isGrounded;
+    public bool isGrounded;
     public Transform groundCheckPos;
     public float groundCheckRadius;
 

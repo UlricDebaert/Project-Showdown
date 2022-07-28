@@ -913,7 +913,7 @@ MonoBehaviour:
   - {fileID: 253957589}
   playerCount: 0
   characters:
-  - {fileID: 11400000, guid: 9a16f27ac2713334fa92be234ecd92b7, type: 2}
+  - {fileID: 11400000, guid: 90dab16774b9dfd4a9df52f274d98b2d, type: 2}
 --- !u!1 &1045218627
 GameObject:
   m_ObjectHideFlags: 0
@@ -2928,11 +2928,13 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
+  isGrounded: 0
   groundCheckPos: {fileID: 1699396619438378761}
   groundCheckRadius: 0.4
   playerSprite: {fileID: 1699396618718544418}
   anim: {fileID: 0}
   minimalFlipSensitivity: 0.5
+  animLock: 0
 --- !u!61 &1699396620358119953
 BoxCollider2D:
   m_ObjectHideFlags: 0
