@@ -37,7 +37,7 @@ public class SP_InstinctAim : MonoBehaviour
         specialPowerInput.performed += ctx => inputHold = ctx.ReadValue<float>();
         specialPowerInput.canceled += ctx => inputHold = ctx.ReadValue<float>();
 
-        Aim();
+        if(aimInput.ReadValue<Vector2>().magnitude > minimalInputSensitivity) Aim();
         if (inputHold > .5f && !PD.isDead)
         {
             DrawAim();
