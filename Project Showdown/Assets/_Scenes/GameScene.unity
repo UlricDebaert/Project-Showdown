@@ -641,7 +641,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &784877725
 GameObject:
@@ -788,7 +788,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &959970783
 GameObject:
@@ -985,7 +985,7 @@ MonoBehaviour:
   - {fileID: 253957589}
   playerCount: 0
   characters:
-  - {fileID: 11400000, guid: 0dfbd3d57856d63438f6730e6a9fd1e9, type: 2}
+  - {fileID: 11400000, guid: 90dab16774b9dfd4a9df52f274d98b2d, type: 2}
 --- !u!1 &1045218627
 GameObject:
   m_ObjectHideFlags: 0
@@ -2796,10 +2796,10 @@ Animation:
   serializedVersion: 3
   m_Animation: {fileID: 0}
   m_Animations:
-  - {fileID: 7400000, guid: 4382ceea0295f8e499b73a2bcecffd20, type: 2}
-  - {fileID: 7400000, guid: 488c1187ab81fc14eb5d754f26c5cb34, type: 2}
-  - {fileID: 7400000, guid: ed5f578fbad6b8d4182da8e6a7ac8a03, type: 2}
-  - {fileID: 7400000, guid: 6010d74e67a58c946830d9047b4f0c7c, type: 2}
+  - {fileID: 7400000, guid: 6e53c6496a6ec8c48a47c71305572280, type: 2}
+  - {fileID: 7400000, guid: ba5c2ab2c29cf9e49b29a99066023878, type: 2}
+  - {fileID: 7400000, guid: 9fdeffaaf037b6a46b45cfd0e7820341, type: 2}
+  - {fileID: 7400000, guid: 8200e0e687e0fcd41a2046b677cc5fe4, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -2867,7 +2867,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2075270913
 GameObject:
@@ -3243,7 +3243,7 @@ Transform:
   - {fileID: 1699396619438378761}
   - {fileID: 1203951}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6522657354147653651
 MonoBehaviour:

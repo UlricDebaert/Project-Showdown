@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BearTrap_Idle
+  m_Name: Shotgun_Cocking
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,7 +20,13 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 2c28dc45dd2c9f14ebd91c5568c77b29, type: 3}
+      value: {fileID: -2404964547157445462, guid: 49776e6d05edb4b439d5e3e8164f900d, type: 3}
+    - time: 0.083333336
+      value: {fileID: -1030675966967525951, guid: 49776e6d05edb4b439d5e3e8164f900d, type: 3}
+    - time: 0.16666667
+      value: {fileID: 2737375828391494249, guid: 49776e6d05edb4b439d5e3e8164f900d, type: 3}
+    - time: 0.25
+      value: {fileID: 2003837231613430716, guid: 49776e6d05edb4b439d5e3e8164f900d, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -40,13 +46,16 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 2c28dc45dd2c9f14ebd91c5568c77b29, type: 3}
+    - {fileID: -2404964547157445462, guid: 49776e6d05edb4b439d5e3e8164f900d, type: 3}
+    - {fileID: -1030675966967525951, guid: 49776e6d05edb4b439d5e3e8164f900d, type: 3}
+    - {fileID: 2737375828391494249, guid: 49776e6d05edb4b439d5e3e8164f900d, type: 3}
+    - {fileID: 2003837231613430716, guid: 49776e6d05edb4b439d5e3e8164f900d, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.016666668
+    m_StopTime: 0.26666668
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

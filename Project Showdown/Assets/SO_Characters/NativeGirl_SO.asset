@@ -17,7 +17,7 @@ MonoBehaviour:
   specialPowerPrefab: {fileID: 4600726464701691743, guid: c8670655d3ccecf499bc581d7b7b656b, type: 3}
   healthPoint: 100
   characterName: Native Girl
-  characterIcon: {fileID: 0}
+  characterIcon: {fileID: 21300000, guid: 71b0676d16001fe4c8812da0b621d55f, type: 3}
   powerIcon: {fileID: 0}
   baseSprite: {fileID: 21300000, guid: 39b9b35341027d144b42c9a7a1a08f5b, type: 3}
   idleAnim: {fileID: 7400000, guid: 4382ceea0295f8e499b73a2bcecffd20, type: 2}
