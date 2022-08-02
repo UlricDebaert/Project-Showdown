@@ -17,7 +17,7 @@ MonoBehaviour:
   bulletDamage: 10
   fireRate: 0.3
   bulletSpeed: 25
-  bulletAngleShift: 10
+  bulletAngleShift: 7.5
   bulletQuantityPerShootPoint: 6
   chargeTime: 0
   knockbackOnPlayer: 0

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 448daa073c09ad5418dd3d379fbe497c, type: 3}
+  m_Name: Trapper_SO
+  m_EditorClassIdentifier: 
+  gun: {fileID: 4761924905954539978, guid: 28f2b4bdcef590844a5a8382d70c989f, type: 3}
+  gunPos: {x: 0, y: 0.3, z: 0}
+  specialPowerPrefab: {fileID: 7297232820822121382, guid: ad2fd6419889abb488a020e7d317457d, type: 3}
+  healthPoint: 100
+  characterName: Trapper
+  characterIcon: {fileID: 21300000, guid: f7188de2b31dd1a408798721f518ddb8, type: 3}
+  powerIcon: {fileID: 0}
+  baseSprite: {fileID: 8819771627749931117, guid: 1424fb68b6980a04d9b62afcc30f791c, type: 3}
+  idleAnim: {fileID: 7400000, guid: 3eed852bd282fc34c87b329f09c52f22, type: 2}
+  walkAnim: {fileID: 7400000, guid: f6b4894be25cfee4fada98fff1001e84, type: 2}
+  walkBackAnim: {fileID: 7400000, guid: 0ac2083124b928c4a8c68034de351f2b, type: 2}
+  jumpAnim: {fileID: 7400000, guid: 98ebf7eb654753646ab658d46783f413, type: 2}
+  deathAnim: {fileID: 0}
+  specialPowerAnim: {fileID: 0}

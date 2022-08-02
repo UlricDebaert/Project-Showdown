@@ -48,6 +48,7 @@ public class SP_BearTrap : MonoBehaviour
         if ((bulletLayer & (1 << collision.transform.gameObject.layer)) > 0 && !isTriggered)
         {
             isTriggered = true;
+            anim.SetBool("isTriggered", isTriggered);
             StartCoroutine(Disappear(disappearTime));
         }
 
@@ -61,6 +62,7 @@ public class SP_BearTrap : MonoBehaviour
             }
 
             isTriggered = true;
+            anim.SetBool("isTriggered", isTriggered);
             StartCoroutine(Disappear(disappearTime));
         }
     }

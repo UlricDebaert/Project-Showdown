@@ -75,8 +75,8 @@ public class PlayerController : MonoBehaviour
         if (isGrounded)
         {
             // Move the character by finding the target 
-            if(lastLookPosition.x * horizontalInput > 0) targetVelocity = new Vector2(horizontalInput * Time.deltaTime * moveSpeed * 100, rb.velocity.y);
-            else targetVelocity = new Vector2(horizontalInput * Time.deltaTime * moveSpeed * 100 * walkBackCoeff, rb.velocity.y);
+            if(lastLookPosition.x * horizontalInput > 0) targetVelocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
+            else targetVelocity = new Vector2(horizontalInput * moveSpeed * walkBackCoeff, rb.velocity.y);
 
             if (lastLookPosition.x * horizontalInput > 0) ChangeAnimationState(playerWalk);
             else if (lastLookPosition.x * horizontalInput < 0) ChangeAnimationState(playerWalkBack);
@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             // Move the character by finding the target velocity
-            targetVelocity = new Vector2(horizontalInput * Time.deltaTime * moveSpeed * 100 * airDragMultiplier, rb.velocity.y);
+            targetVelocity = new Vector2(horizontalInput * moveSpeed * airDragMultiplier, rb.velocity.y);
             ChangeAnimationState(playerJump);
         }
 
@@ -109,14 +109,11 @@ public class PlayerController : MonoBehaviour
     {
         lookPosition = aimInput.ReadValue<Vector2>();
 
-        if (lookPosition.x > minimalFlipSensitivity || lookPosition.x < -minimalFlipSensitivity)
+        if (lookPosition.magnitude > minimalFlipSensitivity || lookPosition.magnitude < -minimalFlipSensitivity)
         {
-            if (lookPosition.x < minimalFlipSensitivity) playerSprite.flipX = true;
+            if (lookPosition.x < 0) playerSprite.flipX = true;
             else playerSprite.flipX = false;
-        }
 
-        if(lookPosition != Vector2.zero)
-        {
             lastLookPosition = lookPosition;
         }
     }

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bearTrapPrefab: {fileID: 287802216993035612, guid: d53bebf5264a84849984425c70c48009, type: 3}
   placementPos: {fileID: 7297232821387024393}
-  reloadTime: 10
+  reloadTime: 5
   minimalInputSensitivity: 0.5
 --- !u!1 &7297232821387024392
 GameObject:
