@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Falling")]
     public AnimationCurve fallingMultiplier;
+    ConstantForce2D cf;
     float lastVelocity;
     float fallTimer;
 
@@ -51,6 +52,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        cf = GetComponent<ConstantForce2D>();
         inputActions = GetComponent<PlayerInput>();
         PD = GetComponent<PlayerData>();
         aimInput = inputActions.actions["Aim"];
@@ -115,13 +117,14 @@ public class PlayerController : MonoBehaviour
         if(lastVelocity > 0 && rb.velocity.y < 0 && !isGrounded)
         {
             fallTimer += Time.deltaTime;
-            rb.velocity = new Vector2();
+            cf.relativeForce = new Vector2(cf.relativeForce.x, -fallingMultiplier.Evaluate(fallTimer));
         }
 
         if(isGrounded || rb.velocity.y >= 0)
         {
             lastVelocity = rb.velocity.y;
             fallTimer = 0.0f;
+            cf.relativeForce = new Vector2(cf.relativeForce.x, -fallingMultiplier.Evaluate(fallTimer));
         }
     }
 

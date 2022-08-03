@@ -188,15 +188,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   movementSmoothing: 0.07
-  walkBackCoeff: 0.3
+  walkBackCoeff: 0.4
   jumpForce: 8
-  airDragMultiplier: 0.75
+  airDragMultiplier: 0.5
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
   fallingMultiplier:
     serializedVersion: 2
-    m_Curve: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 18.23691
+      outSlope: 18.23691
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.048501022
+    - serializedVersion: 3
+      time: 1
+      value: 10
+      inSlope: 0.034731373
+      outSlope: 0.034731373
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.18181014
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
