@@ -45,6 +45,7 @@ public class PlayerData : MonoBehaviour
 
         playerID = GameManager.instance.playerCount;
         GameManager.instance.AddPlayer();
+        GameManager.instance.AddToCamGroup(gameObject);
 
         UIManager.instance.playerPanels[playerID].UpdateKDText(killCount, deathCount);
     }

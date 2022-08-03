@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class GameManager : MonoBehaviour
 
     [Header("Characters")]
     public CharacterSO[] characters;
+
+    [Header("Camera")]
+    public CinemachineTargetGroup camGroupList;
 
     void Awake()
     {
@@ -31,5 +35,10 @@ public class GameManager : MonoBehaviour
     {
         playerCount += 1;
         UIManager.instance.AddPlayerPanel();
+    }
+
+    public void AddToCamGroup(GameObject player)
+    {
+        camGroupList.AddMember(player.transform,1,2);
     }
 }
