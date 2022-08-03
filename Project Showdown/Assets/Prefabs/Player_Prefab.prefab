@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 1350907556090240755}
   - component: {fileID: 6894792454933366005}
   - component: {fileID: 1757449496979015161}
+  - component: {fileID: 2002202761637219666}
   m_Layer: 6
   m_Name: Player_Prefab
   m_TagString: Untagged
@@ -193,6 +194,12 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 128
+  fallingMultiplier:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   isGrounded: 0
   groundCheckPos: {fileID: 1350907554926453743}
   groundCheckRadius: 0.4
@@ -379,6 +386,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0efc28f90256f43b1e4ff9fd4cc59e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!247 &2002202761637219666
+ConstantForce2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350907556090240756}
+  m_Enabled: 1
+  m_Force: {x: 0, y: 0}
+  m_RelativeForce: {x: 0, y: 0}
+  m_Torque: 0
 --- !u!1 &2005761937638332929
 GameObject:
   m_ObjectHideFlags: 0

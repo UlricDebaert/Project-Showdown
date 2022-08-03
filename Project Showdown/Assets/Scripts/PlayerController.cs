@@ -20,6 +20,11 @@ public class PlayerController : MonoBehaviour
     public float airDragMultiplier;
     public LayerMask groundLayer;
 
+    [Header("Falling")]
+    public AnimationCurve fallingMultiplier;
+    float lastVelocity;
+    float fallTimer;
+
     [Header("Ground Check")]
     public bool isGrounded;
     public Transform groundCheckPos;
@@ -61,6 +66,8 @@ public class PlayerController : MonoBehaviour
             Flip();
         }
         if (inputActions.actions["Jump"].triggered) Jump();
+
+        Falling();
     }
 
     private void FixedUpdate()
@@ -100,6 +107,21 @@ public class PlayerController : MonoBehaviour
         {
             //rb.AddForce(new Vector2(0, jumpForce), ForceMode2D.Impulse);
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        }
+    }
+
+    void Falling()
+    {
+        if(lastVelocity > 0 && rb.velocity.y < 0 && !isGrounded)
+        {
+            fallTimer += Time.deltaTime;
+            rb.velocity = new Vector2();
+        }
+
+        if(isGrounded || rb.velocity.y >= 0)
+        {
+            lastVelocity = rb.velocity.y;
+            fallTimer = 0.0f;
         }
     }
 
