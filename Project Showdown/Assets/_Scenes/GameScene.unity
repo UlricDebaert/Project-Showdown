@@ -1003,7 +1003,7 @@ Animator:
   m_GameObject: {fileID: 577637023}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 3ae3f203eb5ecc24fa64fcfbf363705b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7e302efcddfb2564cba134f5041324af, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -13428,8 +13428,8 @@ Animation:
   serializedVersion: 3
   m_Animation: {fileID: 0}
   m_Animations:
-  - {fileID: 7400000, guid: 3eed852bd282fc34c87b329f09c52f22, type: 2}
-  - {fileID: 7400000, guid: 98ebf7eb654753646ab658d46783f413, type: 2}
+  - {fileID: 7400000, guid: 03211a83f16d5ea44bc86b2a0c3c02ae, type: 2}
+  - {fileID: 7400000, guid: 4722e1fb08e0e374db9520908d012348, type: 2}
   - {fileID: 7400000, guid: f6b4894be25cfee4fada98fff1001e84, type: 2}
   - {fileID: 7400000, guid: 0ac2083124b928c4a8c68034de351f2b, type: 2}
   m_WrapMode: 0
@@ -13707,6 +13707,13 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  crouchSensitivity: 0
+  isCrouching: 0
+  ownCollider: {fileID: 0}
+  standUpColliderOffset: {x: 0, y: 0}
+  standUpColliderSize: {x: 0, y: 0}
+  crouchColliderOffset: {x: 0, y: 0}
+  crouchColliderSize: {x: 0, y: 0}
   isGrounded: 0
   groundCheckPos: {fileID: 1699396619438378761}
   groundCheckRadius: 0.4

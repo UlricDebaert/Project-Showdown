@@ -10,6 +10,7 @@ public class SP_InstinctAim : MonoBehaviour
     public float maxDistance;
 
     PlayerData PD;
+    PlayerController PC;
 
     PlayerInput playerInput;
     InputAction specialPowerInput;
@@ -26,6 +27,7 @@ public class SP_InstinctAim : MonoBehaviour
     {
         playerInput = GetComponentInParent<PlayerInput>();
         PD = GetComponentInParent<PlayerData>();
+        PC = GetComponentInParent<PlayerController>();
         specialPowerInput = playerInput.actions["SpecialPower"];
         aimInput = playerInput.actions["Aim"];
         transform.localPosition = PD.character.gunPos;
@@ -46,6 +48,9 @@ public class SP_InstinctAim : MonoBehaviour
         {
             DesactivateAim();
         }
+
+        if (PC.isCrouching) transform.localPosition = PD.character.gunPos + new Vector3(PC.crouchColliderOffset.x, PC.crouchColliderOffset.y, 0.0f);
+        else transform.localPosition = PD.character.gunPos;
     }
 
     void DrawAim()

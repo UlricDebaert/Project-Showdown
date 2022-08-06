@@ -24,5 +24,6 @@ MonoBehaviour:
   walkAnim: {fileID: 7400000, guid: f6b4894be25cfee4fada98fff1001e84, type: 2}
   walkBackAnim: {fileID: 7400000, guid: 0ac2083124b928c4a8c68034de351f2b, type: 2}
   jumpAnim: {fileID: 7400000, guid: 98ebf7eb654753646ab658d46783f413, type: 2}
+  crouchAnim: {fileID: 7400000, guid: 03211a83f16d5ea44bc86b2a0c3c02ae, type: 2}
   deathAnim: {fileID: 0}
   specialPowerAnim: {fileID: 0}

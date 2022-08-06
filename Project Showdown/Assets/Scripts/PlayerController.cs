@@ -26,6 +26,20 @@ public class PlayerController : MonoBehaviour
     float lastVelocity;
     float fallTimer;
 
+    [Header("Crouch")]
+    public float crouchSensitivity;
+    float verticalInput;
+    public bool isCrouching;
+
+    [Header("Colliders")]
+    public BoxCollider2D ownCollider;
+    [Space]
+    public Vector2 standUpColliderOffset;
+    public Vector2 standUpColliderSize;
+    [Space]
+    public Vector2 crouchColliderOffset;
+    public Vector2 crouchColliderSize;
+
     [Header("Ground Check")]
     public bool isGrounded;
     public Transform groundCheckPos;
@@ -41,6 +55,7 @@ public class PlayerController : MonoBehaviour
     const string playerWalk = "Player_Walk_Anim";
     const string playerWalkBack = "Player_WalkBack_Anim";
     const string playerSpecialPower = "Player_SpecialPower_Anim";
+    const string playerCrouch = "Player_Crouch_Anim";
     public bool animLock;
 
     //Inputs
@@ -70,6 +85,7 @@ public class PlayerController : MonoBehaviour
         if (inputActions.actions["Jump"].triggered) Jump();
 
         Falling();
+        Crouch();
     }
 
     private void FixedUpdate()
@@ -81,21 +97,31 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 targetVelocity;
 
-        if (isGrounded)
-        {
-            // Move the character by finding the target 
-            if(lastLookPosition.x * horizontalInput > 0) targetVelocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
-            else targetVelocity = new Vector2(horizontalInput * moveSpeed * walkBackCoeff, rb.velocity.y);
+        if (verticalInput < crouchSensitivity && isGrounded) isCrouching = true;
+        if (verticalInput >= crouchSensitivity || !isGrounded) isCrouching = false;
 
-            if (lastLookPosition.x * horizontalInput > 0) ChangeAnimationState(playerWalk);
-            else if (lastLookPosition.x * horizontalInput < 0) ChangeAnimationState(playerWalkBack);
-            else ChangeAnimationState(playerIdle);
+        if (!isCrouching)
+        {
+            if (isGrounded)
+            {
+                // Move the character by finding the target 
+                if (lastLookPosition.x * horizontalInput > 0) targetVelocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
+                else targetVelocity = new Vector2(horizontalInput * moveSpeed * walkBackCoeff, rb.velocity.y);
+
+                if (lastLookPosition.x * horizontalInput > 0) ChangeAnimationState(playerWalk);
+                else if (lastLookPosition.x * horizontalInput < 0) ChangeAnimationState(playerWalkBack);
+                else ChangeAnimationState(playerIdle);
+            }
+            else
+            {
+                // Move the character by finding the target velocity
+                targetVelocity = new Vector2(horizontalInput * moveSpeed * airDragMultiplier, rb.velocity.y);
+                ChangeAnimationState(playerJump);
+            }
         }
         else
         {
-            // Move the character by finding the target velocity
-            targetVelocity = new Vector2(horizontalInput * moveSpeed * airDragMultiplier, rb.velocity.y);
-            ChangeAnimationState(playerJump);
+            targetVelocity = Vector2.zero;
         }
 
         // And then smoothing it out and applying it to the character
@@ -129,6 +155,7 @@ public class PlayerController : MonoBehaviour
     }
 
     public void OnMove(InputAction.CallbackContext ctx) => horizontalInput = ctx.ReadValue<float>();
+    public void OnCrouch(InputAction.CallbackContext ctx) => verticalInput = ctx.ReadValue<float>();
 
     void Flip()
     {
@@ -140,6 +167,23 @@ public class PlayerController : MonoBehaviour
             else playerSprite.flipX = false;
 
             lastLookPosition = lookPosition;
+        }
+    }
+
+    private void Crouch()
+    {
+        if (isCrouching)
+        {
+            ChangeAnimationState(playerCrouch);
+            ownCollider.offset = crouchColliderOffset;
+            ownCollider.size = crouchColliderSize;
+            if (PD.ownGun != null) PD.ownGun.transform.localPosition = PD.character.gunPos + new Vector3(crouchColliderOffset.x, crouchColliderOffset.y, 0.0f);
+        }
+        else
+        {
+            ownCollider.offset = standUpColliderOffset;
+            ownCollider.size = standUpColliderSize;
+            if (PD.ownGun != null) PD.ownGun.transform.localPosition = PD.character.gunPos;
         }
     }
     

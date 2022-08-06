@@ -27,6 +27,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""Crouch"",
+                    ""type"": ""Value"",
+                    ""id"": ""9d09fc6e-ae82-4739-8106-6f65aab76e48"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""13a9dd9c-fbc0-4757-86ce-8746174250c4"",
@@ -190,6 +198,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""SpecialPower"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""49983b03-a15b-4529-a43a-c48cae8c70f8"",
+                    ""path"": ""<Gamepad>/leftStick/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -226,6 +245,7 @@ public class @Controls : IInputActionCollection, IDisposable
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Move = m_Gameplay.FindAction("Move", throwIfNotFound: true);
+        m_Gameplay_Crouch = m_Gameplay.FindAction("Crouch", throwIfNotFound: true);
         m_Gameplay_Jump = m_Gameplay.FindAction("Jump", throwIfNotFound: true);
         m_Gameplay_AutoFire = m_Gameplay.FindAction("AutoFire", throwIfNotFound: true);
         m_Gameplay_SemiFire = m_Gameplay.FindAction("SemiFire", throwIfNotFound: true);
@@ -287,6 +307,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Gameplay;
     private IGameplayActions m_GameplayActionsCallbackInterface;
     private readonly InputAction m_Gameplay_Move;
+    private readonly InputAction m_Gameplay_Crouch;
     private readonly InputAction m_Gameplay_Jump;
     private readonly InputAction m_Gameplay_AutoFire;
     private readonly InputAction m_Gameplay_SemiFire;
@@ -300,6 +321,7 @@ public class @Controls : IInputActionCollection, IDisposable
         private @Controls m_Wrapper;
         public GameplayActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Gameplay_Move;
+        public InputAction @Crouch => m_Wrapper.m_Gameplay_Crouch;
         public InputAction @Jump => m_Wrapper.m_Gameplay_Jump;
         public InputAction @AutoFire => m_Wrapper.m_Gameplay_AutoFire;
         public InputAction @SemiFire => m_Wrapper.m_Gameplay_SemiFire;
@@ -320,6 +342,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Move.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
                 @Move.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
                 @Move.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnMove;
+                @Crouch.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCrouch;
+                @Crouch.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCrouch;
+                @Crouch.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnCrouch;
                 @Jump.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnJump;
@@ -351,6 +376,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Move.started += instance.OnMove;
                 @Move.performed += instance.OnMove;
                 @Move.canceled += instance.OnMove;
+                @Crouch.started += instance.OnCrouch;
+                @Crouch.performed += instance.OnCrouch;
+                @Crouch.canceled += instance.OnCrouch;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
@@ -415,6 +443,7 @@ public class @Controls : IInputActionCollection, IDisposable
     public interface IGameplayActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnCrouch(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnAutoFire(InputAction.CallbackContext context);
         void OnSemiFire(InputAction.CallbackContext context);

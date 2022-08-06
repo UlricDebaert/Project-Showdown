@@ -80,6 +80,7 @@ public class PlayerSpawn : MonoBehaviour
         animOverrideController["Player_Jump_Anim"] = PD.character.jumpAnim;
         animOverrideController["Player_Walk_Anim"] = PD.character.walkAnim;
         animOverrideController["Player_WalkBack_Anim"] = PD.character.walkBackAnim;
+        animOverrideController["Player_Crouch_Anim"] = PD.character.crouchAnim;
         animOverrideController["Player_Death_Anim"] = PD.character.deathAnim;
         animOverrideController["Player_SpecialPower_Anim"] = PD.character.specialPowerAnim;
 

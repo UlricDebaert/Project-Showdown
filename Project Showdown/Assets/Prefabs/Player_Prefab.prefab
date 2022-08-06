@@ -218,6 +218,13 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  crouchSensitivity: -0.8
+  isCrouching: 0
+  ownCollider: {fileID: 1350907556090240759}
+  standUpColliderOffset: {x: 0, y: 0}
+  standUpColliderSize: {x: 0.8, y: 2}
+  crouchColliderOffset: {x: 0, y: -0.325}
+  crouchColliderSize: {x: 0.8, y: 1.35}
   isGrounded: 0
   groundCheckPos: {fileID: 1350907554926453743}
   groundCheckRadius: 0.4
@@ -372,6 +379,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 6acd35c8-6ab8-44af-be9d-f8e98ba2071c
     m_ActionName: Gameplay/SpecialPower[/XInputControllerWindows/leftTrigger]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1350907556090240758}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnCrouch
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9d09fc6e-ae82-4739-8106-6f65aab76e48
+    m_ActionName: Gameplay/Crouch[/XInputControllerWindows/leftStick/y,/XInputControllerWindows/leftStick/y]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
