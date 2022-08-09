@@ -414,5 +414,11 @@ public class Gun_Editor : Editor
             script.bulletShellEffect = bulletShell.GetComponent<ParticleSystem>();
             bulletShell.name = script.bulletShellPrefab.name;
         }
+
+        if (script.gunStats.bulletShellEffect == null)
+        {
+            script.bulletShellPrefab = null;
+            DestroyImmediate(script.bulletShellEffect);
+        }
     }
 }

@@ -79,7 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunStats: {fileID: 11400000, guid: 81eab344f95ac7d499f62c5cd462763b, type: 2}
   firePoint: {fileID: 2653497386774683978}
-  bulletShellPrefab: {fileID: 8106218731510900227, guid: 8fd600aeac4dd424f831ba65059870f1, type: 3}
+  bulletShellPrefab: {fileID: 0}
   bulletShellEffect: {fileID: 0}
   isHolsterWeapon: 0
   minimalInputSensitivity: 0.5
