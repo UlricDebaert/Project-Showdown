@@ -4834,8 +4834,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 830602457
+  m_SortingLayer: 2
   m_SortingOrder: 30
   m_RenderMode: 0
   m_SortMode: 0
@@ -4944,6 +4944,7 @@ MonoBehaviour:
   firePoint: {fileID: 6279097533465636535}
   bulletShellPrefab: {fileID: 8106218731510900227, guid: 8fd600aeac4dd424f831ba65059870f1, type: 3}
   bulletShellEffect: {fileID: 6279097533333033466}
+  isHolsterWeapon: 0
   minimalInputSensitivity: 0.5
   originalAnimationController: {fileID: 9100000, guid: fdd614ecf80ebe642a7db6d3685ac274, type: 2}
 --- !u!212 &6279097533620971051
@@ -4983,8 +4984,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 830602457
+  m_SortingLayer: 2
   m_SortingOrder: 30
   m_Sprite: {fileID: 21300000, guid: 24f38e11633f76b4a862072591e75b5d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
