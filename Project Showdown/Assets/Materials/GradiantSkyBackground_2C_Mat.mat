@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Chain_Mat
-  m_Shader: {fileID: 203, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: GradiantSkyBackground_2C_Mat
+  m_Shader: {fileID: -6465566751694194690, guid: 9ec0ec18d567767428625d3f155e4088, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,28 +19,26 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _AlphaTex:
+    - Texture2D_abb4e31c24f446c4ad65d48b5a2a7e94:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: b72948374054aed4889c330dd860dcd3, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MaskTex:
+    - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _NormalMap:
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _EnableExternalAlpha: 0
-    - _InvFade: 1
+    - Vector1_1dd3dc96be6c432b887ebd4ffebabcc5: -0.4
+    - Vector1_4970837e88de4a23b39c8dc4e7690715: 0.25
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
-    - _TintColor: {r: 1, g: 1, b: 1, a: 1}
+    - Color_5d318f7d4a00426b9b1fdbd05bb6fb70: {r: 0.7137255, g: 0.7176471, b: 0.3803922, a: 1}
+    - Color_740138d024b142d9a964854ee0e4a049: {r: 0.7176471, g: 0.51139784, b: 0.38039216, a: 0}
   m_BuildTextureStacks: []
