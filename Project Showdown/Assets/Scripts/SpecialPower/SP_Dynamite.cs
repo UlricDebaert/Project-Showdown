@@ -63,7 +63,11 @@ public class SP_Dynamite : MonoBehaviour
                     //print("BOOM DAMAGE");
                     int damageApplyied = Mathf.RoundToInt(damage * damageFalloff.Evaluate(Vector2.Distance(transform.position, hit.transform.position) / explosionRange));
                     hit.GetComponent<PlayerData>().TakeDamage(damageApplyied);
-                    if (hit.GetComponent<PlayerData>().healthPoint <= 0 && hit.gameObject != PD.gameObject) PD.IncreaseKillCount();
+                    if (hit.GetComponent<PlayerData>().healthPoint <= 0 && hit.gameObject != PD.gameObject)
+                    {
+                        hit.GetComponent<PlayerData>().Death();
+                        PD.IncreaseKillCount();
+                    }
                 }
             }
         }

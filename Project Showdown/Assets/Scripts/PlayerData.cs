@@ -67,6 +67,7 @@ public class PlayerData : MonoBehaviour
         //Destroy(ownPower);
         canShoot = false; canMove = false; isDead = true;
         rb.isKinematic = true;
+        rb.velocity = Vector2.zero;
         ownCollider.enabled = false;
         PC.ChangeAnimationState(playerDeath);
     }

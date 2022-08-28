@@ -58,6 +58,13 @@ public class PlayerSpawn : MonoBehaviour
 
         PD.canShoot = true; PD.canMove = true;
 
+        if(PD.ownPower != null && PD.ownPower != PD.character.specialPowerPrefab)
+        {
+            Destroy(PD.ownPower);
+            GameObject ownPower = Instantiate(PD.character.specialPowerPrefab, PD.gameObject.transform);
+            PD.ownPower = ownPower;
+        }
+        
         rb.isKinematic = false;
         ownCollider.enabled = true;
 
@@ -91,7 +98,8 @@ public class PlayerSpawn : MonoBehaviour
     {
         yield return new WaitForSeconds(.1f);
 
-        UIManager.instance.playerPanels[PD.playerID].characterName.text = PD.character.characterName;
+        //UIManager.instance.playerPanels[PD.playerID].characterName.text = PD.character.characterName;
+        UIManager.instance.playerPanels[PD.playerID].characterName.text = "Player " + (PD.playerID+1).ToString();
         UIManager.instance.playerPanels[PD.playerID].characterIcon.sprite = PD.character.characterIcon;
     }
 }

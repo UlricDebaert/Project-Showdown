@@ -18,7 +18,7 @@ public class LineBetweenTwoPoint : MonoBehaviour
     {
         for (int i = 0; i < linePointTrasform.Length; i++)
         {
-            print("set" + linePointTrasform[i].position);
+            //print("set" + linePointTrasform[i].position);
             lineRenderer.SetPosition(i, linePointTrasform[i].position);
         }
     }
