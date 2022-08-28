@@ -50,7 +50,7 @@ public class Bullet : MonoBehaviour
         if ((dummyLayers & (1 << collision.transform.gameObject.layer)) > 0 && collision.gameObject != selfPlayer.gameObject)
         {
             collision.GetComponent<PlayerData>().TakeDamage(Mathf.RoundToInt(bulletDamage / (1 + targetPenetrated * penetrationMultiplier)));
-            if (collision.GetComponent<PlayerData>().healthPoint <= 0)
+            if (collision.GetComponent<PlayerData>().healthPoint <= 0 && !collision.GetComponent<PlayerData>().isDead)
             {
                 selfPlayer.IncreaseKillCount();
                 collision.GetComponent<PlayerData>().Death();

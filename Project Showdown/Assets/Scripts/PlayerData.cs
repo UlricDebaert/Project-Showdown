@@ -53,6 +53,12 @@ public class PlayerData : MonoBehaviour
     private void Update()
     {
         UpdateHpBar();
+        if(isDead && PC.isGrounded)
+        {
+            rb.isKinematic = true;
+            rb.velocity = Vector2.zero;
+            ownCollider.enabled = false;
+        }
     }
 
     public void TakeDamage(int damage)
@@ -66,9 +72,6 @@ public class PlayerData : MonoBehaviour
         Destroy(ownGun);
         //Destroy(ownPower);
         canShoot = false; canMove = false; isDead = true;
-        rb.isKinematic = true;
-        rb.velocity = Vector2.zero;
-        ownCollider.enabled = false;
         PC.ChangeAnimationState(playerDeath);
     }
 
