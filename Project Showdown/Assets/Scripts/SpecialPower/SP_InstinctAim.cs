@@ -31,6 +31,7 @@ public class SP_InstinctAim : MonoBehaviour
         specialPowerInput = playerInput.actions["SpecialPower"];
         aimInput = playerInput.actions["Aim"];
         transform.localPosition = PD.character.gunPos;
+        UIManager.instance.playerPanels[PD.playerID].SPLoadingIcon.fillAmount = 0;
     }
 
 

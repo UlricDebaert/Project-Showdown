@@ -18,7 +18,7 @@ MonoBehaviour:
   healthPoint: 100
   characterName: Trapper
   characterIcon: {fileID: 21300000, guid: f7188de2b31dd1a408798721f518ddb8, type: 3}
-  powerIcon: {fileID: 0}
+  powerIcon: {fileID: 21300000, guid: 84a2c46ce71430845a4c54943cd6b9c9, type: 3}
   baseSprite: {fileID: 8819771627749931117, guid: 1424fb68b6980a04d9b62afcc30f791c, type: 3}
   idleAnim: {fileID: 7400000, guid: 3eed852bd282fc34c87b329f09c52f22, type: 2}
   walkAnim: {fileID: 7400000, guid: f6b4894be25cfee4fada98fff1001e84, type: 2}

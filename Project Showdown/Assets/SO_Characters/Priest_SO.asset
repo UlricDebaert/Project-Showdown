@@ -18,7 +18,7 @@ MonoBehaviour:
   healthPoint: 100
   characterName: Priest
   characterIcon: {fileID: 21300000, guid: 02d9dd3bca12de74aa386553b0d151f6, type: 3}
-  powerIcon: {fileID: 0}
+  powerIcon: {fileID: 21300000, guid: 4df68d28ffc65d14f92001121599cabd, type: 3}
   baseSprite: {fileID: 21300000, guid: 79d9bd3c3e7687c40a63f0e711aee8bd, type: 3}
   idleAnim: {fileID: 7400000, guid: 7c317c42d3b19714b913de8e9c89c0e1, type: 2}
   walkAnim: {fileID: 7400000, guid: d81672c99a2b5f248afe088b6538381c, type: 2}

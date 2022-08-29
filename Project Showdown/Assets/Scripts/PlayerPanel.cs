@@ -11,6 +11,7 @@ public class PlayerPanel : MonoBehaviour
 
     public TMP_Text characterName;
     public Image characterIcon;
+    public Image playerColor;
 
     public TMP_Text KDText;
     public TMP_Text AmmoText;

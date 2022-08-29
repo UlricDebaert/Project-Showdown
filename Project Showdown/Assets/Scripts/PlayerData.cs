@@ -9,6 +9,7 @@ public class PlayerData : MonoBehaviour
     public Image hpBar;
 
     public int playerID;
+    public Color ownColor;
 
     public int killCount;
     public int deathCount;

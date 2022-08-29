@@ -18,7 +18,7 @@ MonoBehaviour:
   healthPoint: 100
   characterName: Cowgirl
   characterIcon: {fileID: 21300000, guid: 47a47cbd993d9cd4aad1491ccea93fab, type: 3}
-  powerIcon: {fileID: 0}
+  powerIcon: {fileID: 21300000, guid: 20eae8f318a07b34d89dac46b7ce23a5, type: 3}
   baseSprite: {fileID: 21300000, guid: 41bd75a4a8e70d744ad57c84dedc8d9b, type: 3}
   idleAnim: {fileID: 7400000, guid: 50285b95c2d89c74fb4ce75acdd68c80, type: 2}
   walkAnim: {fileID: 7400000, guid: 5a5891c06fb881040abad2ae0f56f3b1, type: 2}

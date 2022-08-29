@@ -29,6 +29,8 @@ public class PlayerSpawn : MonoBehaviour
         ownCollider = GetComponent<BoxCollider2D>();
         inputs = GetComponent<PlayerInput>();
         selfTransform = GetComponent<Transform>();
+        GameManager.instance.playerList.Add(PD);
+        GameManager.instance.playerHeights.Add(GetComponent<PlayerHeight>());
         Spawn();
 
         if (PD.character.specialPowerPrefab != null)
@@ -37,6 +39,15 @@ public class PlayerSpawn : MonoBehaviour
             PD.ownPower = ownPower;
         }
 
+        if(GameManager.instance.playersPossibleColor.Count > 0)
+        {
+            SetColor();
+        }
+        else
+        {
+            GameManager.instance.playersPossibleColor = GameManager.instance.playersColor;
+            SetColor();
+        }
     }
 
     private void Update()
@@ -64,6 +75,9 @@ public class PlayerSpawn : MonoBehaviour
             GameObject ownPower = Instantiate(PD.character.specialPowerPrefab, PD.gameObject.transform);
             PD.ownPower = ownPower;
         }
+
+        UIManager.instance.playerPanels[PD.playerID].SPIcon.sprite = PD.character.powerIcon;
+        UIManager.instance.playerPanels[PD.playerID].SPLoadingIcon.sprite = PD.character.powerIcon;
         
         rb.isKinematic = false;
         ownCollider.enabled = true;
@@ -92,6 +106,16 @@ public class PlayerSpawn : MonoBehaviour
         animOverrideController["Player_SpecialPower_Anim"] = PD.character.specialPowerAnim;
 
         StartCoroutine(LateStart());
+    }
+
+    void SetColor()
+    {
+        int colorIndex = Random.Range(0, GameManager.instance.playersPossibleColor.Count);
+        PD.ownColor = GameManager.instance.playersPossibleColor[colorIndex];
+        GameManager.instance.playersPossibleColor.RemoveAt(colorIndex);
+
+        UIManager.instance.playerPanels[PD.playerID].playerColor.color = PD.ownColor;
+        PD.hpBar.color = PD.ownColor;
     }
 
     IEnumerator LateStart()

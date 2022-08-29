@@ -12,9 +12,15 @@ public class GameManager : MonoBehaviour
 
     [Header("Players Management")]
     public int playerCount;
+    public List<PlayerData> playerList;
+    public List<PlayerHeight> playerHeights;
 
     [Header("Characters")]
     public CharacterSO[] characters;
+    
+    [Header("Colors")]
+    public List<Color> playersColor;
+    public List<Color> playersPossibleColor;
 
     [Header("Camera")]
     public CinemachineTargetGroup camGroupList;

@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 1350907556090240755}
   - component: {fileID: 6894792454933366005}
   - component: {fileID: 1757449496979015161}
+  - component: {fileID: 5707409680146381523}
   - component: {fileID: 2002202761637219666}
   m_Layer: 6
   m_Name: Player_Prefab
@@ -247,6 +248,7 @@ MonoBehaviour:
   character: {fileID: 11400000, guid: 47f5250c1c3840145b5cdcf43413fb03, type: 2}
   hpBar: {fileID: 7122675195616753601}
   playerID: 0
+  ownColor: {r: 0, g: 0, b: 0, a: 0}
   killCount: 0
   deathCount: 0
   canMove: 0
@@ -425,6 +427,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b0efc28f90256f43b1e4ff9fd4cc59e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5707409680146381523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350907556090240756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 266589764993b8a4082c01b4b29c9033, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!247 &2002202761637219666
