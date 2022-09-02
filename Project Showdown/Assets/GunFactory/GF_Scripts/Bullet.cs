@@ -34,17 +34,20 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
-        if (destroyed)
-        {
-            rb.isKinematic = true;
-            rb.velocity = new Vector2(0, 0); 
-        }
+        //if (destroyed)
+        //{
+        //    rb.isKinematic = true;
+        //    rb.velocity = new Vector2(0, 0); 
+        //}
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if ((wallLayers & (1 << collision.transform.gameObject.layer)) > 0)
         {
+            rb.isKinematic = true;
+            rb.velocity = new Vector2(0, 0);
+            transform.position = collision.ClosestPoint(transform.position);
             DestroyItself();
         }
         if ((dummyLayers & (1 << collision.transform.gameObject.layer)) > 0 && collision.gameObject != selfPlayer.gameObject)

@@ -16,9 +16,14 @@ public class PlayerController : MonoBehaviour
     Vector3 velocity = Vector3.zero;
 
     [Header("Jump")]
+    public bool isInAir;
     public float jumpForce;
     public float airDragMultiplier;
+    float currentAirDragMultiplier;
+    public float airDragTime;
+    float airDragTimer;
     public LayerMask groundLayer;
+
 
     [Header("Falling")]
     public AnimationCurve fallingMultiplier;
@@ -102,7 +107,7 @@ public class PlayerController : MonoBehaviour
 
         if (!isCrouching)
         {
-            if (isGrounded)
+            if (!isInAir)
             {
                 // Move the character by finding the target 
                 if (lastLookPosition.x * horizontalInput > 0) targetVelocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
@@ -115,7 +120,10 @@ public class PlayerController : MonoBehaviour
             else
             {
                 // Move the character by finding the target velocity
-                targetVelocity = new Vector2(horizontalInput * moveSpeed * airDragMultiplier, rb.velocity.y);
+                airDragTimer -= Time.deltaTime;
+                //print(airDragTimer / airDragTime);
+                currentAirDragMultiplier = Mathf.Lerp(airDragMultiplier, 1, airDragTimer / airDragTime);
+                targetVelocity = new Vector2(horizontalInput * moveSpeed * currentAirDragMultiplier, rb.velocity.y);
                 ChangeAnimationState(playerJump);
             }
         }
@@ -190,6 +198,17 @@ public class PlayerController : MonoBehaviour
     private void CheckSurroundings()
     {
         isGrounded = Physics2D.OverlapCircle(groundCheckPos.position, groundCheckRadius, groundLayer);
+
+        if(!isGrounded && !isInAir)
+        {
+            airDragTimer = airDragTime;
+            isInAir = true;
+        }
+        if(isGrounded && isInAir)
+        {
+            isInAir = false;
+        }
+
     }
 
     private void OnDrawGizmos()

@@ -8,6 +8,7 @@ public class SP_HolyGrenade : MonoBehaviour
     Collider2D ownCollider;
     Animator anim;
     [HideInInspector] public PlayerData PD;
+    public ParticleSystem sparks;
 
     List<PlayerData> currentPlayerDatas;
     List<PlayerData> oldPlayerDatas;
@@ -70,6 +71,7 @@ public class SP_HolyGrenade : MonoBehaviour
         ownCollider.enabled = false;
         exploded = true;
         anim.Play("HolyGrenade_Explosion");
+        sparks.Play();
     }
 
     void Neutralization()

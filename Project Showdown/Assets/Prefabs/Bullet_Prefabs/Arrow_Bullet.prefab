@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3444065535886247776}
   - component: {fileID: 660970262049375055}
   - component: {fileID: 1148119691885267235}
+  - component: {fileID: -3088542383245732160}
   m_Layer: 8
   m_Name: Arrow_Bullet
   m_TagString: Untagged
@@ -156,3 +157,22 @@ MonoBehaviour:
   destroyed: 0
   selfPlayer: {fileID: 0}
   destroyAnimDelay: 0
+--- !u!95 &-3088542383245732160
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3444065535886247777}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 18c48bb186fc1bd42867347e3fd180a1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

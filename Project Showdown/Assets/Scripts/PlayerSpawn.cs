@@ -21,6 +21,8 @@ public class PlayerSpawn : MonoBehaviour
     AnimatorOverrideController animOverrideController;
     public AnimatorController originalAnimationController;
 
+    List<Transform> possibleSpawnPos;
+
     void Start()
     {
         print("spawn");
@@ -60,7 +62,41 @@ public class PlayerSpawn : MonoBehaviour
 
     void Spawn()
     {
-        selfTransform.position = GameManager.instance.spawnPoints[Random.Range(0, GameManager.instance.spawnPoints.Length)].position;
+        //selfTransform.position = GameManager.instance.spawnPoints[Random.Range(0, GameManager.instance.spawnPoints.Count-1)].position;
+
+        possibleSpawnPos = GameManager.instance.spawnPoints;
+
+        //possibleSpawnPos[Random.Range(0, GameManager.instance.spawnPoints.Count - 1)].GetComponent<Spawn>().DetectPlayer()
+
+        int spawnPosIndex = Random.Range(0, possibleSpawnPos.Count);
+
+        //print(spawnPosIndex);
+        //print(possibleSpawnPos[spawnPosIndex].GetComponent<Spawn>().DetectPlayer());
+
+        if (possibleSpawnPos[spawnPosIndex].GetComponent<Spawn>().DetectPlayer())
+        {
+            while (possibleSpawnPos[spawnPosIndex].GetComponent<Spawn>().DetectPlayer())
+            {
+
+                if (possibleSpawnPos.Count > 0)
+                {
+                    possibleSpawnPos.RemoveAt(spawnPosIndex);
+                    spawnPosIndex = Random.Range(0, possibleSpawnPos.Count - 1);
+                }
+                else
+                {
+                    selfTransform.position = GameManager.instance.spawnPoints[Random.Range(0, GameManager.instance.spawnPoints.Count - 1)].position;
+                    break;
+                }
+            }
+            if (possibleSpawnPos.Count > 0) selfTransform.position = possibleSpawnPos[spawnPosIndex].position;
+        }
+        else
+        {
+            selfTransform.position = possibleSpawnPos[spawnPosIndex].position;
+        }
+
+
         PD.healthPoint = PD.character.healthPoint;
 
         GameObject ownGun = Instantiate(PD.character.gun, PD.gameObject.transform);

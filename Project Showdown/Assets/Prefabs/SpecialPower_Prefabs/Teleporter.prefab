@@ -47,3 +47,18 @@ MonoBehaviour:
   teleportTime: 0.28
   teleportDistance: 5
   reloadTime: 2
+  posCheckedDir:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 1, z: 0}
+  - {x: -1, y: 1, z: 0}
+  - {x: 1, y: 1, z: 0}
+  - {x: -1, y: 0, z: 0}
+  - {x: 1, y: 0, z: 0}
+  - {x: 0, y: -1, z: 0}
+  - {x: -1, y: -1, z: 0}
+  - {x: 1, y: -1, z: 0}
+  posCheckedDist: 2
+  posCheckedRadius: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 1152

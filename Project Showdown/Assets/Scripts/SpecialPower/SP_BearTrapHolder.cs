@@ -35,7 +35,7 @@ public class SP_BearTrapHolder : MonoBehaviour
         specialPowerInput.performed += ctx => inputHold = ctx.ReadValue<float>();
         specialPowerInput.canceled += ctx => inputHold = ctx.ReadValue<float>();
 
-        if (inputHold > .5f && !PD.isDead && canThrow && PC.isGrounded)
+        if (inputHold > .5f && !PD.isDead && canThrow && PC.isGrounded && PC.gameObject.transform.parent == null)
         {
             PlaceTrap();
             canThrow = false;

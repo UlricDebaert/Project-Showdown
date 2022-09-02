@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     [Header("Spawn")]
-    public Transform[] spawnPoints;
+    public List<Transform> spawnPoints;
 
     [Header("Players Management")]
     public int playerCount;

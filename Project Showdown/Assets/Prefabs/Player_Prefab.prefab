@@ -190,8 +190,10 @@ MonoBehaviour:
   moveSpeed: 5
   movementSmoothing: 0.07
   walkBackCoeff: 0.4
+  isInAir: 0
   jumpForce: 8
-  airDragMultiplier: 0.5
+  airDragMultiplier: 0.6
+  airDragTime: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 128

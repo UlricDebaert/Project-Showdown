@@ -14,12 +14,20 @@ public class SP_Teleportation : MonoBehaviour
     public float minimalInputSensitivity = 0.5f;
     Vector3 lookPosition;
 
+    [Header("Teleport Stats")]
     public float teleportTime;
     public float teleportDistance;
 
+    [Header("Reload")]
     public float reloadTime;
     float reloadTimer;
     bool canTeleport;
+
+    [Header("Teleport Check")]
+    public Vector3[] posCheckedDir;
+    public float posCheckedDist;
+    public float posCheckedRadius;
+    public LayerMask groundLayer;
 
     const string playerSpecialPower = "Player_SpecialPower_Anim";
 
@@ -70,7 +78,7 @@ public class SP_Teleportation : MonoBehaviour
         //print("get input");
 
         yield return new WaitForSeconds(teleportTime);
-        PD.gameObject.transform.position = newPos;
+        PD.gameObject.transform.position = TeleportPlace(newPos);
         //print("tp");
 
         //yield return new WaitForSeconds(teleportTime);
@@ -78,6 +86,26 @@ public class SP_Teleportation : MonoBehaviour
         PD.gameObject.GetComponent<Rigidbody2D>().isKinematic = false;
         PD.canMove = true;
         //print("release");
+    }
+
+
+    public Vector3 TeleportPlace(Vector3 newPos)
+    {
+        for (int i = 0; i < posCheckedDir.Length; i++)
+        {
+            if(!Physics2D.OverlapCircle(newPos + posCheckedDir[i].normalized * posCheckedDist, posCheckedRadius, groundLayer)) 
+                return newPos + posCheckedDir[i].normalized * posCheckedDist;
+        }
+
+        RaycastHit2D hit;
+        hit = Physics2D.Raycast(transform.position, newPos, Vector3.Distance(transform.position, newPos));
+        //print(new Vector2(hit.point.x - newPos.x, hit.point.y - newPos.y).normalized/2);
+
+        if(hit.point.x - newPos.x >= 0 ) return hit.point + new Vector2(hit.point.x - newPos.x, hit.point.y - newPos.y).normalized / 2;
+        if(hit.point.x - newPos.x < 0 ) return hit.point + new Vector2(newPos.x - hit.point.x, newPos.y - hit.point.y).normalized / 2;
+
+        print("/!/ Teleport return null");
+        return Vector3.zero;
     }
 
     void Aim()
