@@ -33,10 +33,14 @@ MonoBehaviour:
   magazine: 6
   reloadTime: 1.5
   bulletShellEffect: {fileID: 963796697290353065, guid: a6fe4cc2a76702d458bdb67fd891148c, type: 3}
-  shootAudio: {fileID: 0}
-  volumeBase: 1
+  shootAudio: {fileID: 8300000, guid: 50879b6cb4492cb44bc361157c43526e, type: 3}
+  volumeBase: 0.4
   pitchBase: 1
   pitchVariation: 0
+  chargeAudio: {fileID: 0}
+  chargeVolumeBase: 1
+  pumpAudio: {fileID: 8300000, guid: 2ca3f72aead86e04289723e73be73767, type: 3}
+  pumpVolumeBase: 0.4
   gunSprite: {fileID: 21300000, guid: a37858f6f97c0c0489f0ae992d0a36d9, type: 3}
   idleAnimation: {fileID: 7400000, guid: ba5c2ab2c29cf9e49b29a99066023878, type: 2}
   shootAnimation: {fileID: 7400000, guid: 8200e0e687e0fcd41a2046b677cc5fe4, type: 2}

@@ -18,10 +18,15 @@ public class SP_BearTrap : MonoBehaviour
 
     bool isTriggered;
 
+    [Header("Bear Trap Sound")]
+    public AudioClip bearTrapSound;
+    AudioSource audioSource;
+
     void Start()
     {
         ownCollider = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         isTriggered = false;
         anim.SetBool("isTriggered", isTriggered);
@@ -39,6 +44,7 @@ public class SP_BearTrap : MonoBehaviour
 
     IEnumerator Disappear(float time)
     {
+        audioSource.PlayOneShot(bearTrapSound);
         yield return new WaitForSeconds(time);
         Destroy(gameObject);
     }

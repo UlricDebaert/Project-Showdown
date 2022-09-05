@@ -29,12 +29,17 @@ public class SP_Teleportation : MonoBehaviour
     public float posCheckedRadius;
     public LayerMask groundLayer;
 
+    [Header("Teleport Sound")]
+    public AudioClip teleportSound;
+    AudioSource audioSource;
+
     const string playerSpecialPower = "Player_SpecialPower_Anim";
 
     void Start()
     {
         PD = GetComponentInParent<PlayerData>();
         playerInput = GetComponentInParent<PlayerInput>();
+        audioSource = GetComponent<AudioSource>();
         specialPowerInput = playerInput.actions["SpecialPower"];
         aimInput = playerInput.actions["Aim"];
         canTeleport = true;
@@ -68,6 +73,7 @@ public class SP_Teleportation : MonoBehaviour
 
     IEnumerator Teleport()
     {
+        audioSource.PlayOneShot(teleportSound);
         PD.gameObject.GetComponent<Rigidbody2D>().isKinematic = true;
         PD.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
         PD.canMove = false;

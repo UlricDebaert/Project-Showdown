@@ -22,11 +22,16 @@ public class SP_Dynamite : MonoBehaviour
 
     bool exploded;
 
+    [Header("Dynamite Sound")]
+    public AudioClip dynamiteSound;
+    AudioSource audioSource;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         ownCollider = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         exploded = false;
     }
@@ -40,6 +45,7 @@ public class SP_Dynamite : MonoBehaviour
 
     public void Explosion()
     {
+        audioSource.PlayOneShot(dynamiteSound);
         transform.rotation = Quaternion.identity;
         transform.localScale = new Vector3(explosionSize, explosionSize, explosionSize);
         rb.isKinematic = true;

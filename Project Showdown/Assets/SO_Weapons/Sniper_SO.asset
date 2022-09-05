@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireMode: 1
   bulletPrefab: {fileID: 2485881281654894994, guid: 49023d5d3dd7b5d4c9503b8e655aae7c, type: 3}
-  bulletDamage: 45
+  bulletDamage: 40
   fireRate: 0.4
   bulletSpeed: 40
   bulletAngleShift: 1
@@ -30,15 +30,19 @@ MonoBehaviour:
   muzzleflashLifeTime: 0.05
   maxTargetsPenetration: 2
   penetrationMultiplier: 0.5
-  magazine: 5
-  reloadTime: 1
+  magazine: 4
+  reloadTime: 1.25
   bulletShellEffect: {fileID: 8106218731510900227, guid: 8fd600aeac4dd424f831ba65059870f1, type: 3}
-  shootAudio: {fileID: 0}
-  volumeBase: 1
+  shootAudio: {fileID: 8300000, guid: 0fb0057fba0510f46aa8001ca09a34d7, type: 3}
+  volumeBase: 0.4
   pitchBase: 1
   pitchVariation: 0
+  chargeAudio: {fileID: 0}
+  chargeVolumeBase: 1
+  pumpAudio: {fileID: 0}
+  pumpVolumeBase: 1
   gunSprite: {fileID: 21300000, guid: 2e4c4c37e21d11d46a85918b3d631ed7, type: 3}
-  idleAnimation: {fileID: 0}
-  shootAnimation: {fileID: 0}
-  emptyMagazineAnimation: {fileID: 0}
+  idleAnimation: {fileID: 7400000, guid: 1d1fde412ef36854197c91020c701200, type: 2}
+  shootAnimation: {fileID: 7400000, guid: c5f8262a7f750dc48b1cf07a9dcacece, type: 2}
+  emptyMagazineAnimation: {fileID: 7400000, guid: 41ba298b6bfae4e489d9d2fdf4dca754, type: 2}
   cockingAnimation: {fileID: 0}

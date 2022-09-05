@@ -22,11 +22,16 @@ public class SP_HolyGrenade : MonoBehaviour
     bool exploded;
     bool back;
 
+    [Header("Holy Grenade Sound")]
+    public AudioClip holyGrenadeSound;
+    AudioSource audioSource;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         ownCollider = GetComponent<Collider2D>();
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
 
         currentPlayerDatas = new List<PlayerData>();
         oldPlayerDatas = new List<PlayerData>();
@@ -64,6 +69,7 @@ public class SP_HolyGrenade : MonoBehaviour
 
     public void Explosion()
     {
+        audioSource.PlayOneShot(holyGrenadeSound);
         transform.rotation = Quaternion.identity;
         rb.isKinematic = true;
         rb.freezeRotation = true;

@@ -8,6 +8,9 @@ public class PlayerData : MonoBehaviour
     public CharacterSO character;
     public Image hpBar;
 
+    public Color hitColor;
+    Color defaultColor;
+
     public int playerID;
     public Color ownColor;
 
@@ -49,6 +52,8 @@ public class PlayerData : MonoBehaviour
         GameManager.instance.AddToCamGroup(gameObject);
 
         UIManager.instance.playerPanels[playerID].UpdateKDText(killCount, deathCount);
+
+        defaultColor = PC.playerSprite.color;
     }
 
     private void Update()
@@ -65,6 +70,8 @@ public class PlayerData : MonoBehaviour
     public void TakeDamage(int damage)
     {
         healthPoint -= damage;
+        PC.playerSprite.color = hitColor;
+        Invoke("ResetMaterial", 0.1f);
     }
 
     public void Death()
@@ -91,5 +98,10 @@ public class PlayerData : MonoBehaviour
     void UpdateHpBar()
     {
         hpBar.fillAmount = (float)healthPoint / character.healthPoint;
+    }
+
+    void ResetMaterial()
+    {
+        PC.playerSprite.color = defaultColor;
     }
 }

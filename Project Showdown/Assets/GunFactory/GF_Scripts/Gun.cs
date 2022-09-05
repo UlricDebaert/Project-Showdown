@@ -16,6 +16,7 @@ public class Gun : MonoBehaviour
 
     SpriteRenderer gunSprite;
     AudioSource audioSource;
+    AudioSource chargeAudioSource;
     Animator anim;
     AnimatorOverrideController animOverrideController;
 
@@ -62,6 +63,14 @@ public class Gun : MonoBehaviour
         shootSemiInput = inputActions.actions["SemiFire"];
         reloadInput = inputActions.actions["Reload"];
         specialPowerInput = inputActions.actions["SpecialPower"];
+
+        if (gunStats.fireMode == GunSO.shootType.charge)
+        {
+            chargeAudioSource = gameObject.AddComponent<AudioSource>();
+            chargeAudioSource.loop = true;
+            chargeAudioSource.volume = gunStats.chargeVolumeBase;
+            chargeAudioSource.playOnAwake = false;
+        }
     }
 
     void Start()
@@ -126,6 +135,9 @@ public class Gun : MonoBehaviour
                     {
                         Invoke("EmptyBarrel", 0.1f);
 
+                        audioSource.volume = gunStats.pumpVolumeBase;
+                        audioSource.PlayOneShot(gunStats.pumpAudio);
+
                         if (gunStats.cockingAnimation != null)
                             anim.Play("Gun_Cocking_Anim");
 
@@ -147,6 +159,9 @@ public class Gun : MonoBehaviour
                     {
                         anim.Play("Gun_Shoot_Anim");
                         chargeTimer += Time.deltaTime;
+
+                        chargeAudioSource.clip = gunStats.chargeAudio;
+                        if(!chargeAudioSource.isPlaying) chargeAudioSource.Play();
                     }
 
                     if (fireHold > .5 && canShoot && currentAmmoCount > 0 && chargeTimer > gunStats.chargeTime && PD.canShoot)
@@ -158,6 +173,7 @@ public class Gun : MonoBehaviour
                     if (fireHold < .5 && chargeTimer != 0.0f)
                     {
                         chargeTimer = 0.0f;
+                        chargeAudioSource.Stop();
                     }
                     break;
 
@@ -211,6 +227,8 @@ public class Gun : MonoBehaviour
         if (currentAmmoCount <= 0)
         {
             reloadTimer = gunStats.reloadTime;
+            if(gunStats.fireMode == GunSO.shootType.charge) chargeTimer = 0.0f;
+            if (chargeAudioSource != null) if(chargeAudioSource.isPlaying) chargeAudioSource.Pause();
         }
                 
         /*gameObject.GetComponentInParent<Rigidbody2D>().AddForce(

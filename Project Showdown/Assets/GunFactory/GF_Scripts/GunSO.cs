@@ -42,9 +42,13 @@ public class GunSO : ScriptableObject
 
     [Header("Audio")]
     [Tooltip("Audio play for each shot")] public AudioClip shootAudio;
-    [Tooltip("Base audio pitch")] public float volumeBase = 1;
+    [Tooltip("Base audio volume")] public float volumeBase = 1;
     [Tooltip("Base audio pitch")] public float pitchBase = 1;
     [Tooltip("Pitch variation for each shot")] public float pitchVariation = 0;
+    [Tooltip("Audio loop for charging weapon")] public AudioClip chargeAudio;
+    [Tooltip("Base charge volume")] public float chargeVolumeBase = 1;
+    [Tooltip("Audio play for pump weapon")] public AudioClip pumpAudio;
+    [Tooltip("Base pump volume")] public float pumpVolumeBase = 1;
 
     [Header("Graphics")]
     [Tooltip("Set sprite for Editor Mode")] public Sprite gunSprite;

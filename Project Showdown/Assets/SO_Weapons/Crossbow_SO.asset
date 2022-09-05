@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireMode: 0
   bulletPrefab: {fileID: 3444065535886247777, guid: bf45b1e596c1d184ba83442320c50877, type: 3}
-  bulletDamage: 20
+  bulletDamage: 60
   fireRate: 0.4
   bulletSpeed: 25
   bulletAngleShift: 0
@@ -23,15 +23,19 @@ MonoBehaviour:
   knockbackOnPlayer: 0
   muzzleflashPrefabs: []
   muzzleflashLifeTime: 0.05
-  maxTargetsPenetration: 0
-  penetrationMultiplier: 0.5
+  maxTargetsPenetration: 2
+  penetrationMultiplier: 0.75
   magazine: 1
   reloadTime: 1
   bulletShellEffect: {fileID: 0}
-  shootAudio: {fileID: 0}
-  volumeBase: 1
+  shootAudio: {fileID: 8300000, guid: 3933a4d22629b8f44ab7c2da84434936, type: 3}
+  volumeBase: 0.8
   pitchBase: 1
   pitchVariation: 0
+  chargeAudio: {fileID: 0}
+  chargeVolumeBase: 1
+  pumpAudio: {fileID: 0}
+  pumpVolumeBase: 1
   gunSprite: {fileID: 21300000, guid: 5363a93a2ec8fd146a60aa37b2180930, type: 3}
   idleAnimation: {fileID: 7400000, guid: 2079f40782b163e4cb58cb7711d8381c, type: 2}
   shootAnimation: {fileID: 7400000, guid: 7d8c56ccdf33caa468d26a3a6217be66, type: 2}
