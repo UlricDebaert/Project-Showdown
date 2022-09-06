@@ -97,6 +97,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""47642ce2-40b2-40b0-bbe6-60b4a48daf16"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -209,6 +217,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Crouch"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a4a7103a-31fb-4021-adb6-540d0f3c4ec9"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -254,6 +273,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Gameplay_Spawn = m_Gameplay.FindAction("Spawn", throwIfNotFound: true);
         m_Gameplay_Reload = m_Gameplay.FindAction("Reload", throwIfNotFound: true);
         m_Gameplay_SpecialPower = m_Gameplay.FindAction("SpecialPower", throwIfNotFound: true);
+        m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_OpenCharacterMenu = m_UI.FindAction("OpenCharacterMenu", throwIfNotFound: true);
@@ -316,6 +336,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Gameplay_Spawn;
     private readonly InputAction m_Gameplay_Reload;
     private readonly InputAction m_Gameplay_SpecialPower;
+    private readonly InputAction m_Gameplay_Pause;
     public struct GameplayActions
     {
         private @Controls m_Wrapper;
@@ -330,6 +351,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Spawn => m_Wrapper.m_Gameplay_Spawn;
         public InputAction @Reload => m_Wrapper.m_Gameplay_Reload;
         public InputAction @SpecialPower => m_Wrapper.m_Gameplay_SpecialPower;
+        public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -369,6 +391,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @SpecialPower.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSpecialPower;
                 @SpecialPower.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSpecialPower;
                 @SpecialPower.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnSpecialPower;
+                @Pause.started -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_GameplayActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_GameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -403,6 +428,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @SpecialPower.started += instance.OnSpecialPower;
                 @SpecialPower.performed += instance.OnSpecialPower;
                 @SpecialPower.canceled += instance.OnSpecialPower;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -452,6 +480,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnSpawn(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
         void OnSpecialPower(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

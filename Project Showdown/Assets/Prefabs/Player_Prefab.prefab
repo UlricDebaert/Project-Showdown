@@ -260,6 +260,7 @@ GameObject:
   - component: {fileID: 1757449496979015161}
   - component: {fileID: 5707409680146381523}
   - component: {fileID: 2002202761637219666}
+  - component: {fileID: 5355280483573419862}
   m_Layer: 6
   m_Name: Player_Prefab
   m_TagString: Untagged
@@ -510,6 +511,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 9d09fc6e-ae82-4739-8106-6f65aab76e48
     m_ActionName: Gameplay/Crouch[/XInputControllerWindows/leftStick/y,/XInputControllerWindows/leftStick/y]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 47642ce2-40b2-40b0-bbe6-60b4a48daf16
+    m_ActionName: Gameplay/Pause[/XInputControllerWindows/start,/XInputControllerWindows/start]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -565,6 +570,18 @@ ConstantForce2D:
   m_Force: {x: 0, y: 0}
   m_RelativeForce: {x: 0, y: 0}
   m_Torque: 0
+--- !u!114 &5355280483573419862
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350907556090240756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 572962eecd9d81c41af2169cdc9c0244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2005761937638332929
 GameObject:
   m_ObjectHideFlags: 0

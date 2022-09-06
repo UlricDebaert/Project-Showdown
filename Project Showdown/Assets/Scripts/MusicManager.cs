@@ -9,14 +9,17 @@ public class MusicManager : MonoBehaviour
     Music lastPlayedMusic;
 
     bool canPlayMusic;
+    float defaultVolume;
 
     AudioSource audioSource;
 
     private void Start()
     {
+        PauseMenu.musicOn = true;
         audioSource = GetComponent<AudioSource>();
         canPlayMusic = true;
         lastPlayedMusic = null;
+        defaultVolume = audioSource.volume;
     }
 
     private void Update()
@@ -29,6 +32,15 @@ public class MusicManager : MonoBehaviour
         }
 
         if(!audioSource.isPlaying) canPlayMusic = true;
+
+        if(!PauseMenu.musicOn)
+        {
+            audioSource.volume = 0.0f;
+        }
+        else
+        {
+            audioSource.volume = defaultVolume;
+        }
     }
 
     void SelectMusic()

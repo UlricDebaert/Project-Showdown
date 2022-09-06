@@ -294,7 +294,7 @@ public class Gun : MonoBehaviour
     void Aim()
     {
         lookPosition = aimInput.ReadValue<Vector2>();
-        if(lookPosition.x > minimalInputSensitivity || lookPosition.y > minimalInputSensitivity || lookPosition.x < -minimalInputSensitivity || lookPosition.y < -minimalInputSensitivity)
+        if((lookPosition.x > minimalInputSensitivity || lookPosition.y > minimalInputSensitivity || lookPosition.x < -minimalInputSensitivity || lookPosition.y < -minimalInputSensitivity) && !GameManager.gameIsPaused)
         {
             transform.localEulerAngles = new Vector3(0f, 0f, Mathf.Atan2(lookPosition.x, lookPosition.y) * -180 / Mathf.PI + 90f);
         }

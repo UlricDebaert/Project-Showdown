@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class UIManager : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class UIManager : MonoBehaviour
 
     public GameObject playerPanelPrefab;
     public List<PlayerPanel> playerPanels = new List<PlayerPanel>();
+
+    public UnityEvent pauseEvent;
+    public UnityEvent resumeEvent;
 
     void Awake()
     {

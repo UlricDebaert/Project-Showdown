@@ -25,8 +25,13 @@ public class GameManager : MonoBehaviour
     [Header("Camera")]
     public CinemachineTargetGroup camGroupList;
 
+    [Header("Pause")]
+    public static bool gameIsPaused;
+
     void Awake()
     {
+        gameIsPaused = false;
+
         if (instance != null && instance != this)
         {
             Destroy(gameObject);

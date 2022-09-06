@@ -169,7 +169,7 @@ public class PlayerController : MonoBehaviour
     {
         lookPosition = aimInput.ReadValue<Vector2>();
 
-        if (lookPosition.magnitude > minimalFlipSensitivity || lookPosition.magnitude < -minimalFlipSensitivity)
+        if ((lookPosition.magnitude > minimalFlipSensitivity || lookPosition.magnitude < -minimalFlipSensitivity) && !GameManager.gameIsPaused)
         {
             if (lookPosition.x < 0) playerSprite.flipX = true;
             else playerSprite.flipX = false;

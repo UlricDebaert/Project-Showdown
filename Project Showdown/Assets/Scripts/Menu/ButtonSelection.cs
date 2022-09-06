@@ -34,7 +34,7 @@ public class ButtonSelection : MonoBehaviour
             isSelected = false;
         }
 
-        transitionTimer += Time.deltaTime;
+        transitionTimer += Time.unscaledDeltaTime;
 
         if (isSelected)
         {
