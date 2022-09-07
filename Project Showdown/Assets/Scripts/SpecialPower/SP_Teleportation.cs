@@ -42,7 +42,8 @@ public class SP_Teleportation : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         specialPowerInput = playerInput.actions["SpecialPower"];
         aimInput = playerInput.actions["Aim"];
-        canTeleport = true;
+        canTeleport = false;
+        reloadTimer = reloadTime;
     }
 
 

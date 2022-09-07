@@ -47,4 +47,4 @@ MonoBehaviour:
   gunPos: {x: 0, y: 0, z: 0}
   drawGunTime: 1.5
   storeGunTime: 0.2
-  reloadTime: 5
+  reloadTime: 40

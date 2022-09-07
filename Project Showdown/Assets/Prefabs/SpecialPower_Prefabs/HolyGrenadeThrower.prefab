@@ -45,5 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holyGrenadePrefab: {fileID: 6266831672082692452, guid: 346aab553836e3f4898933832e31d3a0, type: 3}
   throwPower: 12.5
-  reloadTime: 2.5
+  reloadTime: 30
   minimalInputSensitivity: 0.5

@@ -254,6 +254,7 @@ public class Gun : MonoBehaviour
             currentAmmoCount = 0;
             reloadTimer = gunStats.reloadTime;
             UpdateAmmoCount();
+            if(gunStats.fireMode == GunSO.shootType.charge) chargeAudioSource.Stop();
         }
     }
 

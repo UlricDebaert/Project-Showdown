@@ -29,7 +29,8 @@ public class SP_HolyGrenadeThrower : MonoBehaviour
         PD = GetComponentInParent<PlayerData>();
         specialPowerInput = playerInput.actions["SpecialPower"];
         aimInput = playerInput.actions["Aim"];
-        canThrow = true;
+        canThrow = false;
+        reloadTimer = reloadTime;
     }
 
     private void Update()

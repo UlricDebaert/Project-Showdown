@@ -33,7 +33,7 @@ MonoBehaviour:
   magazine: 10
   reloadTime: 0.75
   bulletShellEffect: {fileID: 8106218731510900227, guid: 8fd600aeac4dd424f831ba65059870f1, type: 3}
-  shootAudio: {fileID: 8300000, guid: 962e4bd8c44e7b74c90fdc98ec68f70c, type: 3}
+  shootAudio: {fileID: 8300000, guid: 4f6ef24daa9b4434288390a68cea791a, type: 3}
   volumeBase: 1
   pitchBase: 1
   pitchVariation: 0

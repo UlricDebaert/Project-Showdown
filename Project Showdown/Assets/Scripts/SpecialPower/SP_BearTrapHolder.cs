@@ -27,7 +27,8 @@ public class SP_BearTrapHolder : MonoBehaviour
         PD = GetComponentInParent<PlayerData>();
         PC = GetComponentInParent<PlayerController>();
         specialPowerInput = playerInput.actions["SpecialPower"];
-        canThrow = true;
+        canThrow = false;
+        reloadTimer = reloadTime;
     }
 
     private void Update()

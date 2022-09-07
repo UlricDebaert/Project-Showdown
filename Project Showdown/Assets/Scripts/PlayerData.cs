@@ -22,8 +22,9 @@ public class PlayerData : MonoBehaviour
     public bool isDead;
 
     public int healthPoint;
-    [HideInInspector] public GameObject ownGun;
-    [HideInInspector] public GameObject ownPower;
+    public GameObject ownGun;
+    public GameObject ownPower;
+    public GameObject ownPowerPrefab;
 
     Rigidbody2D rb;
     BoxCollider2D ownCollider;

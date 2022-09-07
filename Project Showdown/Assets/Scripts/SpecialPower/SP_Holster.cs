@@ -30,6 +30,8 @@ public class SP_Holster : MonoBehaviour
         PD = GetComponentInParent<PlayerData>();
         playerInput = GetComponentInParent<PlayerInput>();
         specialPowerInput = playerInput.actions["SpecialPower"];
+        canDraw = false;
+        reloadTimer = reloadTime;
     }
 
 

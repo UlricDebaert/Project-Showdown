@@ -39,6 +39,7 @@ public class PlayerSpawn : MonoBehaviour
         {
             GameObject ownPower = Instantiate(PD.character.specialPowerPrefab, PD.gameObject.transform);
             PD.ownPower = ownPower;
+            PD.ownPowerPrefab = PD.character.specialPowerPrefab;
         }
 
         if(GameManager.instance.playersPossibleColor.Count > 0)
@@ -105,11 +106,13 @@ public class PlayerSpawn : MonoBehaviour
 
         PD.canShoot = true; PD.canMove = true;
 
-        if(PD.ownPower != null && PD.ownPower != PD.character.specialPowerPrefab)
+        if(PD.ownPowerPrefab != null && PD.ownPowerPrefab != PD.character.specialPowerPrefab)
         {
+            //print("spawn new power");
             Destroy(PD.ownPower);
             GameObject ownPower = Instantiate(PD.character.specialPowerPrefab, PD.gameObject.transform);
             PD.ownPower = ownPower;
+            PD.ownPowerPrefab = PD.character.specialPowerPrefab;
         }
 
         UIManager.instance.playerPanels[PD.playerID].SPIcon.sprite = PD.character.powerIcon;

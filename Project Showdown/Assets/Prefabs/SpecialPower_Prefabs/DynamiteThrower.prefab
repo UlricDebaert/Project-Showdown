@@ -45,5 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dynamitePrefab: {fileID: 7820355249633925552, guid: 7daec4baf72b0654f8203015d6c26683, type: 3}
   throwPower: 12.5
-  reloadTime: 2.5
+  reloadTime: 30
   minimalInputSensitivity: 0.5
